@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:42:46
+ * @LastEditTime: 2020-09-26 19:43:55
  * @FilePath: \antd-cms\src\index.tsx
  */
 
@@ -27,13 +27,18 @@ const supportsHistory = "pushState" in window.history;
 
 
 
+// ReactDOM.render(
+
+//   <Router
+//     getUserConfirmation={getUserConfirmation}
+//   >
+//     <App />
+//   </Router>
+
+//   , document.getElementById('root')
+// );
+
 ReactDOM.render(
-
-  <Router
-    getUserConfirmation={getUserConfirmation}
-  >
-    <App />
-  </Router>
-
+  <App />
   , document.getElementById('root')
 );

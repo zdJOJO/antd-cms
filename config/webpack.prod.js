@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:13:51
+ * @LastEditTime: 2020-09-26 20:08:46
  * @FilePath: \antd-cms\config\webpack.prod.js
  */
 
@@ -22,11 +22,9 @@ module.exports = merge(common, {
   entry: {
     main: [
       '@babel/polyfill',
-      path.resolve(__dirname, '../src/index.js')
+      path.resolve(__dirname, '../src/index.tsx')
     ]
   },
-
-
 
   plugins: [
 
@@ -50,9 +48,8 @@ module.exports = merge(common, {
       title: 'CMS系统',
       filename: path.join(__dirname, "../dist/index.html"),
       favicon: path.join(__dirname, "../assets/favicon.ico"),
-      template: path.join(__dirname, '../assets/templete.ejs'), // 指定模板文件路径, 使用ejs模板语法
+      template: path.join(__dirname, '../index.html'), // 指定模板文件路径
       chunks: ["main"],  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
-      insertJs: [`./js/vendor.dll.reactV.js`]
     }),
 
     new MiniCssExtractPlugin({

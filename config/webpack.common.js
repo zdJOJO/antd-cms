@@ -3,9 +3,10 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-23 21:36:05
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:57:12
+ * @LastEditTime: 2020-09-26 20:23:33
  * @FilePath: \antd-cms\config\webpack.common.js
  */
+const webpack = require('webpack');
 const path = require('path');
 const os = require('os');
 const HappyPack = require('happypack');
@@ -48,12 +49,13 @@ const happyPack = new HappyPack({
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
-      presets: ['@babel/preset-env', '@babel/preset-react'],
+      presets: ['@babel/preset-env', "@babel/preset-typescript", '@babel/preset-react'],
       plugins: [
         ['@babel/plugin-proposal-decorators', { "legacy": true }],
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-export-default-from',
         '@babel/plugin-transform-runtime',
+        "@babel/plugin-transform-modules-commonjs"
       ],
     }
   }],
@@ -71,7 +73,7 @@ module.exports = {
   devtool: isProd ? 'cheap-module-eval-source-map' : 'source-map',
 
   output: {
-    path: path.join(__dirname, '../dist/js'),
+    path: path.join(__dirname, '../dist/'),
     // publicPath: './js/',  // publicPath：访问时文件的目录， 打包的js
     filename: 'js/[name].[hash:8].bundle.js',
     chunkFilename: 'js/[name].[chunkhash:8].chunk.js'
@@ -90,15 +92,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        loaders: ['happypack/loader?id=babel'],
+        test: /\.(ts|tsx)$/,
+        use: ['happypack/loader?id=babel'],
         exclude: /^node_modules$/,
       },
       {
-        test: /\.(ts|tsx)$/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.(js|jsx)$/,
+        use: ['happypack/loader?id=babel'],
         exclude: /^node_modules$/,
       },
       {
@@ -179,9 +179,9 @@ module.exports = {
 
         //node_modules内的依赖库
         vendors: {
-          name: "vendor",
+          name: "vendors",
           chunks: "all",
-          test: /[\\/]node_modules[\\/]/,
+          // test: /[\\/]node_modules[\\/]/,
           minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
           maxInitialRequests: 5,
           minSize: 0,

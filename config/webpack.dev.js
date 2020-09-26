@@ -3,12 +3,12 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:13:31
+ * @LastEditTime: 2020-09-26 19:40:15
  * @FilePath: \antd-cms\config\webpack.dev.js
  */
 
 const webpack = require('webpack')
-const path = require('path')
+const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
@@ -20,7 +20,7 @@ module.exports = merge(common, {
     `webpack-dev-server/client?http://localhost:${port}`,
     "webpack/hot/only-dev-server",
     'react-hot-loader/patch',
-    path.resolve(__dirname, '../src/index.js')  // 入口文件
+    path.resolve(__dirname, '../src/index.tsx')  // 入口文件
   ],
 
   devServer: {
@@ -37,9 +37,9 @@ module.exports = merge(common, {
   plugins: [
 
     new HtmlWebpackPlugin({
-      filename: 'index.html', // 设置生成的内存页面的名称
       title: '开发环境',
       template: path.join(__dirname, '../index.html'), // 指定模板文件路径
+      filename: 'index.html', // 设置生成的内存页面的名称
     }),
 
     new webpack.HotModuleReplacementPlugin()
