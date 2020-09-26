@@ -1,48 +1,6 @@
-import moment from "dayjs"
-
-import home from '../assets/images/home.png';
-import home_fill from '../assets/images/home_fill.png';
-import address from '../assets/images/address.png';
-import address_fill from '../assets/images/address_fill.png';
-import cart from '../assets/images/cart.png';
-import cart_fill from '../assets/images/cart_fill.png';
-import user from '../assets/images/user.png';
-import user_fill from '../assets/images/user_fill.png';
-
-import menu1 from '../assets/images/menu1.svg';
-import menu2 from '../assets/images/menu2.svg';
-import menu3 from '../assets/images/menu3.svg';
-import menu4 from '../assets/images/menu4.svg';
-import menu5 from '../assets/images/menu5.svg';
-import menu6 from '../assets/images/menu6.svg';
-
-import order from '../assets/images/order.svg';
-import wait_pay from '../assets/images/wait-pay.svg';
-import wait_use from '../assets/images/wait-use.svg';
-import wait_comment from '../assets/images/wait-comment.svg';
-import back_pay from '../assets/images/back-pay.svg';
-
-import my_collect from '../assets/images/收藏.svg';
-import my_comment from '../assets/images/评论.svg';
-import my_foot from '../assets/images/足迹.svg';
-import my_bag from '../assets/images/会员卡.svg';
-
-export const themeColor = "#ffd000"; // 主题颜色
-export const fontSize = "0.28rem";
-export const fontColor = "#303133"; // 字体颜色
-export const defaultColor = "#606266";
-export const defauCommentCount = 3;
-export const fontStyle = {
-  color: "#303133",
-  fontSize: "0.28rem",
-};
-export const cartBallTrasformTime = 600;  // 商品模块 加入购物车小球特效变换时间 单位:毫秒
 
 // route path
 export const ROUTE_PATH = {
-
-  // BASENAME: '/react',
-
   HOME: '/',
   USER: '/user',
   SETTING: '/setting',
@@ -128,49 +86,7 @@ export const menus = [
   }
 ];
 
-//“我的”模块 订单/菜单
-export const memberInfoMenus = [
-  {
-    name: "我的订单",
-    imgName: order,
-  },
-  {
-    name: "待付款",
-    imgName: wait_pay,
-  },
-  {
-    name: "待使用",
-    imgName: wait_use,
-  },
-  {
-    name: "待评价",
-    imgName: wait_comment,
-  },
-  {
-    name: "退款",
-    imgName: back_pay,
-  },
-];
 
-//“我的”模块  足迹
-export const myInfoMenes = [
-  {
-    name: "收藏",
-    imgName: my_collect,
-  },
-  {
-    name: "评论",
-    imgName: my_comment,
-  },
-  {
-    name: "足迹",
-    imgName: my_foot,
-  },
-  {
-    name: "红包卡券",
-    imgName: my_bag,
-  },
-]
 
 // 是按转换
 export const transformTime = (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") => moment(dataStr).format(pattern);
@@ -183,30 +99,3 @@ export const getRandomName = () => {
   var str2 = lastName[Math.floor(Math.random() * (lastName.length))];
   return `${str1} ${str2}`;
 }
-
-// 根据路由获取名字
-export const getTitleName = (path) => {
-  switch (path) {
-    case '/':
-      return 'Solar System React';
-    case '/location':
-      return '位置';
-    case '/cart':
-      return '购物袋';
-    case '/user':
-      return '我的';
-    case '/home/news':
-      return '今日要闻';
-    case '/home/goods':
-      return '购物/美食';
-    case '/home/photoes':
-      return '旅游/分享';
-    case '/comment':
-      return '评论';
-    default:
-      return '';
-  }
-}
-
-// 百度地图密钥
-export const baiduMap_AK = 'IcgnafKNldYZGjRjLiRqvcG09TQ5OAOd';

@@ -4,14 +4,12 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:49:22
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-02 20:13:34
+ * @LastEditTime: 2020-09-26 18:48:37
  */
 
 import axios from 'axios';
 
-import { Toast } from 'antd-mobile';
-
-import { BASE_URL } from './api';
+const BASE_URL = "/api";
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -31,16 +29,16 @@ instance.interceptors.request.use(
 
 // 响应拦截器
 instance.interceptors.response.use(
-  response => {
+  (response: any) => {
     if (response.status === 200) {
       return response;
     } else {
-      Toast.offline('网络出现问题');
+      // Toast.offline('网络出现问题');
       return
     }
   },
   error => {
-    Toast.offline(`${error}😢`);
+    console.log(`${error}😢`);
     return;
   });
 
@@ -56,29 +54,29 @@ instance.interceptors.response.use(
 
 const http = {
 
-  get: function (url, isForm = false, isMsg = false) {
+  get: function (url: string, isForm = false, isMsg = false) {
     return instance.get(url)
       .then(response => {
         if (response.data.status === 0) {
           if (response.data.message.length > 0) {
             if (isMsg) {
-              Toast.success(`为您跟新${response.data.message.length} 条信息 😀`, 1.5)
+              console.log(`为您跟新${response.data.message.length} 条信息 😀`);
             }
           } else {
-            Toast.info(`已无更多信息 🙂`, 1.5)
+            // Toast.info(`已无更多信息 🙂`, 1.5)
           }
           return response.data.message
         } else {
-          Toast.fail(`${response.data.message} 😢`);
+          // Toast.fail(`${response.data.message} 😢`);
           return
         }
       }).catch(err => {
-        Toast.fail(`请求失败${err} 😢`);
+        // Toast.fail(`请求失败${err} 😢`);
         return Promise.reject(err)
       })
   },
 
-  post: function (url, param, isForm = false) {
+  post: function (url: string, param: any, isForm = false) {
     let contentType = 'application/json;charset=UTF-8';
     if (isForm) {
       contentType = 'application/x-www-form-urlencoded';
@@ -98,11 +96,11 @@ const http = {
             msg: response.data.message
           }
         } else {
-          Toast.fail(`${response.data.message} 😢`);
+          // Toast.fail(`${response.data.message} 😢`);
           return
         }
       }).catch(err => {
-        Toast.fail(`请求失败${err} 😢`);
+        // Toast.fail(`请求失败${err} 😢`);
         return Promise.reject(err)
       })
   },

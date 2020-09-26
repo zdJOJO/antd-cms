@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-23 21:36:05
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:23:34
+ * @LastEditTime: 2020-09-26 18:57:12
  * @FilePath: \antd-cms\config\webpack.common.js
  */
 const path = require('path');
@@ -97,7 +97,7 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         use: {
-          loader: 'ts-loader',
+          loader: 'babel-loader',
         },
         exclude: /^node_modules$/,
       },

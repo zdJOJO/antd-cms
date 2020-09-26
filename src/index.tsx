@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:38:21
+ * @LastEditTime: 2020-09-26 18:42:46
  * @FilePath: \antd-cms\src\index.tsx
  */
 
@@ -17,7 +17,7 @@ import {
 import App from './App';
 
 // 当导航需要确认时执行的函数
-const getUserConfirmation = (message, callback) => {
+const getUserConfirmation = (message: string, callback: any) => {
   callback(console.log(message))
 }
 

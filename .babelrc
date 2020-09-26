@@ -1,9 +1,23 @@
 {
 	"presets": [
-		"@babel/preset-env",
+		[
+			"@babel/preset-env",
+			// https://github.com/babel/babel/blob/master/packages/babel-preset-env/data/plugins.json#L32
+			{
+				"targets": {
+					"browsers": [
+						"chrome >= 47"
+					]
+				},
+				"useBuiltIns": "usage",
+				"corejs": 3
+			}
+		],
+		"@babel/preset-typescript",
 		"@babel/preset-react"
 	],
 	"plugins": [
+		"@babel/plugin-syntax-dynamic-import",
 		"@babel/plugin-transform-runtime",
 		"@babel/plugin-proposal-object-rest-spread",
 		[
