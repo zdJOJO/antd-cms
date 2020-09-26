@@ -25,20 +25,13 @@ const getUserConfirmation = (message: string, callback: any) => {
 const supportsHistory = "pushState" in window.history;
 
 
-
-
-// ReactDOM.render(
-
-//   <Router
-//     getUserConfirmation={getUserConfirmation}
-//   >
-//     <App />
-//   </Router>
-
-//   , document.getElementById('root')
-// );
-
 ReactDOM.render(
-  <App />
+
+  <Router
+    getUserConfirmation={getUserConfirmation}
+  >
+    <App />
+  </Router>
+
   , document.getElementById('root')
 );

@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-23 21:36:05
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 20:23:33
+ * @LastEditTime: 2020-09-26 21:14:13
  * @FilePath: \antd-cms\config\webpack.common.js
  */
 const webpack = require('webpack');
@@ -122,15 +122,10 @@ module.exports = {
         use: [
           cssLoader,
           'css-loader',
-          // {
-          //   loader: 'postcss-loader',
-          //   options: {
-          //     plugins: postcss.plugins
-          //   }
-          // },
           {
             loader: 'less-loader',
             options: {
+              modules: true,
               modifyVars: {
                 'primary-color': '#F5222D',
                 'border-radius-base': '2px'
