@@ -2,9 +2,11 @@ import React, { lazy, memo, Suspense, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
-import Header from '../../components/layout/Header'
-import Sider from '../../components/layout/Sider'
-import Footer from '../../components/layout/Footer'
+import {
+  Header,
+  Sider,
+  Footer
+} from '../../components';
 
 import { menus } from '../../route/menus';
 

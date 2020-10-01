@@ -3,11 +3,10 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 23:59:47
+ * @LastEditTime: 2020-10-01 11:23:32
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
-
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
   HomeOutlined,
   ApartmentOutlined,
@@ -15,11 +14,34 @@ import {
   TableOutlined
 } from '@ant-design/icons';
 
+import {
+  ROOT,
+  RESOURCE,
+  RESOURCE_ROLE,
+  RESOURCE_FUND,
+  VTABLE,
+  SETTING
+} from './';
+
+/**
+ * path需要保持唯一
+ * permKey 表示权限Key值  permKey: true表示所有用户都有权限
+ * enName 表示翻译文本对应的key
+ */
+interface IMenu {
+  path: string
+  name: string
+  en_name: string
+  permKey: string | boolean
+  icon?: string | ReactNode
+  children?: Array<IMenu>
+}
+
 export const menus: Array<IMenu> = [
   {
     name: '首页',
     en_name: 'Home',
-    path: '/',
+    path: ROOT,
     icon: <HomeOutlined />,
     permKey: true,
     children: []
@@ -27,20 +49,20 @@ export const menus: Array<IMenu> = [
   {
     name: '资源管理',
     en_name: 'Resource Management',
-    path: '/app/resource',
+    path: RESOURCE,
     icon: <ApartmentOutlined />,
     permKey: 'menu.resource',
     children: [
       {
         name: '角色管理',
         en_name: 'Role Management',
-        path: '/app/resource/roleManage',
+        path: RESOURCE_ROLE,
         permKey: 'menu.roleManage',
       },
       {
         name: '资金管理',
         en_name: 'Fund Management',
-        path: '/app/resource/fundManage',
+        path: RESOURCE_FUND,
         permKey: 'menu.fundManage',
       }
     ]
@@ -48,14 +70,14 @@ export const menus: Array<IMenu> = [
   {
     name: '虚拟表格',
     en_name: 'Virtual Table',
-    path: '/app/vtable',
+    path: VTABLE,
     icon: <TableOutlined />,
     permKey: true
   },
   {
     name: '系统设置',
     en_name: 'Setting',
-    path: '/app/setting',
+    path: SETTING,
     icon: <SettingOutlined />,
     permKey: true,
   },

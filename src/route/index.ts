@@ -3,13 +3,18 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 17:34:43
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-27 00:33:09
- * @FilePath: \antd-cms\src\route\index.tsx
+ * @LastEditTime: 2020-10-01 11:22:26
+ * @FilePath: \antd-cms\src\route\index.ts
  */
 
-import React from "react"
-import { Redirect, Route } from 'react-router-dom'
-import { cloneDeep } from 'lodash'
+
+export const ROOT = "/";
+export const RESOURCE = "/app/resource";
+export const RESOURCE_ROLE = "/app/resource/role";
+export const RESOURCE_FUND = "/app/resource/fund";
+export const VTABLE = "/app/vtable";
+export const SETTING = "/app/setting";
+
 
 /**
  * 自定义key，生成菜单map类型
