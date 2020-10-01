@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-01 11:23:32
+ * @LastEditTime: 2020-10-01 12:47:36
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React, { ReactNode } from 'react';
@@ -57,13 +57,13 @@ export const menus: Array<IMenu> = [
         name: '角色管理',
         en_name: 'Role Management',
         path: RESOURCE_ROLE,
-        permKey: 'menu.roleManage',
+        permKey: 'menu.roleManage'
       },
       {
         name: '资金管理',
         en_name: 'Fund Management',
         path: RESOURCE_FUND,
-        permKey: 'menu.fundManage',
+        permKey: 'menu.fundManage'
       }
     ]
   },
@@ -79,6 +79,6 @@ export const menus: Array<IMenu> = [
     en_name: 'Setting',
     path: SETTING,
     icon: <SettingOutlined />,
-    permKey: true,
-  },
+    permKey: true
+  }
 ]

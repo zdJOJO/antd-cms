@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-23 21:36:05
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 21:14:13
+ * @LastEditTime: 2020-10-01 12:52:24
  * @FilePath: \antd-cms\config\webpack.common.js
  */
 const webpack = require('webpack');
@@ -11,9 +11,9 @@ const path = require('path');
 const os = require('os');
 const HappyPack = require('happypack');
 const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin'); // remove it in production environment.
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // remove it in production environment.
 const otherPlugins = process.argv[1].indexOf('webpack-dev-server') >= 0 ? [] : [
@@ -22,7 +22,7 @@ const otherPlugins = process.argv[1].indexOf('webpack-dev-server') >= 0 ? [] : [
     defaultSizes: 'parsed',
     // generateStatsFile: true,
     statsOptions: { source: false }
-  }), // remove it in production environment.
+  }) // remove it in production environment.
 ];
 
 
@@ -49,20 +49,20 @@ const happyPack = new HappyPack({
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
-      presets: ['@babel/preset-env', "@babel/preset-typescript", '@babel/preset-react'],
+      presets: ['@babel/preset-env', '@babel/preset-typescript', '@babel/preset-react'],
       plugins: [
-        ['@babel/plugin-proposal-decorators', { "legacy": true }],
+        ['@babel/plugin-proposal-decorators', { 'legacy': true }],
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-export-default-from',
         '@babel/plugin-transform-runtime',
-        "@babel/plugin-transform-modules-commonjs"
-      ],
+        '@babel/plugin-transform-modules-commonjs'
+      ]
     }
   }],
   //共享进程池
   threadPool: happyThreadPool,
   //允许 HappyPack 输出日志
-  verbose: true,
+  verbose: true
 })
 
 
@@ -80,11 +80,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx", '.css', '.less'], // import ** from 时，导入可以省略文件的拓展名
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.less'], // import ** from 时，导入可以省略文件的拓展名
     alias: {
-      '@': path.join(__dirname, '../src'),
-      '@components': path.join(__dirname, '../src/components'),
-      '@utils': path.join(__dirname, '../src/utils'),
+      '@': path.resolve(__dirname, '../src'),
+      '@components': path.resolve(__dirname, '../src/components'),
+      '@utils': path.resolve(__dirname, '../src/utils'),
       'react-dom': '@hot-loader/react-dom'
     }
   },
@@ -94,12 +94,12 @@ module.exports = {
       {
         test: /\.(ts|tsx)$/,
         use: ['happypack/loader?id=babel'],
-        exclude: /^node_modules$/,
+        exclude: /^node_modules$/
       },
       {
         test: /\.(js|jsx)$/,
         use: ['happypack/loader?id=babel'],
-        exclude: /^node_modules$/,
+        exclude: /^node_modules$/
       },
       {
         test: /\.css$/,
@@ -109,11 +109,11 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[local]-[hash:8]',
+              localIdentName: '[local]-[hash:8]'
             }
           },
           {
-            loader: 'postcss-loader',
+            loader: 'postcss-loader'
           }
         ]
       },
@@ -137,14 +137,14 @@ module.exports = {
       },
       {
         test: /\.(jpg|png|gif|svg)$/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 1024 * 8, // 8k以下的base64内联，不产生图片文件
           fallback: 'file-loader', // 8k以上，用file-loader抽离（非必须，默认就是file-loader）
           name: '[name].[ext]?[hash]', // 文件名规则，默认是[hash].[ext]
-          outputPath: path.join(__dirname, '../dist/images'), // 输出路径
+          outputPath: path.join(__dirname, '../dist/images') // 输出路径
         }
-      },
+      }
     ]
   },
 
@@ -168,19 +168,19 @@ module.exports = {
       minChunks: 1,  // 表示被引用次数，默认为1；
       maxAsyncRequests: 5,  //所有异步请求不得超过5个
       maxInitialRequests: 3,  //初始话并行请求不得超过3个
-      automaticNameDelimiter: '~',//名称分隔符，默认是~
+      automaticNameDelimiter: '~', //名称分隔符，默认是~
       name: true,  //打包后的名称，默认是chunk的名字通过分隔符（默认是～）分隔
       cacheGroups: {
 
         //node_modules内的依赖库
         vendors: {
-          name: "vendors",
-          chunks: "all",
+          name: 'vendors',
+          chunks: 'all',
           // test: /[\\/]node_modules[\\/]/,
           minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
           maxInitialRequests: 5,
           minSize: 0,
-          priority: -10,
+          priority: -10
         },
 
         // 处理异步chunk
@@ -193,9 +193,9 @@ module.exports = {
 
         // ‘src/js’ 下的js文件
         common: {
-          chunks: "all",
-          test: /[\\/]src[\\/]js[\\/].*\.js/,//也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,  
-          name: "common", //生成文件名，依据output规则
+          chunks: 'all',
+          test: /[\\/]src[\\/]js[\\/].*\.js/, //也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,
+          name: 'common', //生成文件名，依据output规则
           minChunks: 2,
           maxInitialRequests: 5,
           minSize: 0,
@@ -208,7 +208,7 @@ module.exports = {
           test: /\.(sass|scss|css|less)$/,
           chunks: 'all',    // merge all the css chunk to one file
           enforce: true,
-          reuseExistingChunk: true,
+          reuseExistingChunk: true
         }
       }
     },

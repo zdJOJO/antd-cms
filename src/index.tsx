@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 19:43:55
+ * @LastEditTime: 2020-10-01 12:57:22
  * @FilePath: \antd-cms\src\index.tsx
  */
 
@@ -12,7 +12,7 @@ import ReactDOM from 'react-dom';
 import {
   // BrowserRouter as Router
   HashRouter as Router
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import App from './App';
 
@@ -22,7 +22,7 @@ const getUserConfirmation = (message: string, callback: any) => {
 }
 
 // 用来判断本地浏览器是否支持刷新
-const supportsHistory = "pushState" in window.history;
+const supportsHistory = 'pushState' in window.history;
 
 
 ReactDOM.render(

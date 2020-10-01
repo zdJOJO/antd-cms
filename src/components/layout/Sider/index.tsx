@@ -4,6 +4,8 @@ import { useHistory, useLocation } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
 
+import { IMenu } from '../../../../index';
+
 
 const { SubMenu } = Menu
 const MenuItem = Menu.Item
@@ -11,10 +13,10 @@ const MenuItem = Menu.Item
 
 function getDefaultOpenKeys(pathname: string): Array<string> {
   const paths = (pathname || '').split('/')
-  let res = [];
+  const res = [];
   if (paths && paths.length > 3) {
     for (let i = 3; i <= paths.length; i++) {
-      let p = paths.slice(0, 3).join('/')
+      const p = paths.slice(0, 3).join('/')
       res.push(p)
     }
   }
@@ -44,7 +46,7 @@ const Sider: React.FC<ISider> = ({
 
   const generateMenuItem = (menus: IMenu[]) => {
     return menus.map(menu => {
-      const { children, path, icon, transKey, name = '' } = menu;
+      const { children, path, icon, name = '' } = menu;
       if (children && children.length) {
         return (
           <SubMenu

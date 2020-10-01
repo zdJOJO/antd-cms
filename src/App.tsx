@@ -11,8 +11,8 @@ const App: React.FC<any> = () => {
       <HashRouter>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path='/login' component={Login} />
-            <Route path='/' component={IndexPage} />
+            <Route exact path="/login" component={Login} />
+            <Route path="/" component={IndexPage} />
             <Redirect from="/*" to="/login" />
           </Switch>
         </Suspense>

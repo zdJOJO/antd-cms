@@ -6,7 +6,7 @@ import {
   Header,
   Sider,
   Footer
-} from '../../components';
+} from '@components';
 
 import { menus } from '../../route/menus';
 
