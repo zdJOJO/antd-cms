@@ -1,9 +1,9 @@
 /*
  * @Description: file content
  * @Autor: zdJOJO
- * @Date: 2020-09-23 21:36:05
+ * @Date: 2020-09-26 17:34:43
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-01 17:12:57
+ * @LastEditTime: 2020-10-01 20:06:50
  * @FilePath: \antd-cms\config\webpack.common.js
  */
 const webpack = require('webpack');
@@ -39,7 +39,7 @@ const progressPlugin = new ProgressBarWebpackPlugin({
 
 const providePlugin = new webpack.ProvidePlugin({
   axios: 'axios',
-  moment: 'dayjs'
+  dayjs: 'dayjs'
 });
 
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -190,16 +190,16 @@ module.exports = {
           maxInitialRequests: 5,
           minSize: 0,
           priority: 1
-        }
+        },
 
-        // // 将css提取到一个CSS中
-        // styles: {
-        //   name: 'styles',
-        //   test: /\.(sass|scss|css|less)$/,
-        //   chunks: 'all',    // merge all the css chunk to one file
-        //   enforce: true,
-        //   reuseExistingChunk: true
-        // }
+        // 将css提取到一个CSS中
+        styles: {
+          name: 'styles',
+          chunks: 'all',    // merge all the css chunk to one file
+          test: /\.(sass|scss|css|less)$/,
+          enforce: true,
+          reuseExistingChunk: true
+        }
       }
     },
     noEmitOnErrors: true  // 在编译出错时，使用 optimization.noEmitOnErrors 来跳过生成阶段(emitting phase)。这可以确保没有生成出错误资源

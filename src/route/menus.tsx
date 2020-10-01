@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-01 12:47:36
+ * @LastEditTime: 2020-10-01 19:42:13
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React, { ReactNode } from 'react';
@@ -12,7 +12,7 @@ import {
   ApartmentOutlined,
   SettingOutlined,
   TableOutlined
-} from '@ant-design/icons';
+} from '@utils/antdIcons';
 
 import {
   ROOT,

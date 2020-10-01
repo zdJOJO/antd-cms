@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-01 16:33:35
+ * @LastEditTime: 2020-10-01 18:20:52
  * @FilePath: \antd-cms\config\webpack.prod.js
  */
 
@@ -21,7 +21,7 @@ module.exports = merge(common, {
 
   entry: {
     main: [
-      '@babel/polyfill',
+      // '@babel/polyfill',
       path.resolve(__dirname, '../src/index.tsx')
     ]
   },
@@ -38,18 +38,25 @@ module.exports = merge(common, {
     // 清空项目根目录下dist
     new CleanWebpackPlugin(),
 
+    // new HtmlWebpackPlugin({
+    //   inject: true,
+    //   minify: {               // 压缩HTML文件
+    //     removeComments: true, // 移除HTML中的注释
+    //     collapseWhitespace: true, // 删除空白符与换行符
+    //     minifyCSS: true// 压缩内联css
+    //   },
+    //   title: 'CMS系统',
+    //   filename: path.join(__dirname, '../dist/index.html'),
+    //   favicon: path.join(__dirname, '../assets/favicon.ico'),
+    //   template: path.join(__dirname, '../index.html'), // 指定模板文件路径
+    //   chunks: ['main']  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+    // }),
+
     new HtmlWebpackPlugin({
-      inject: true,
-      minify: {               // 压缩HTML文件
-        removeComments: true, // 移除HTML中的注释
-        collapseWhitespace: true, // 删除空白符与换行符
-        minifyCSS: true// 压缩内联css
-      },
-      title: 'CMS系统',
-      filename: path.join(__dirname, '../dist/index.html'),
-      favicon: path.join(__dirname, '../assets/favicon.ico'),
-      template: path.join(__dirname, '../index.html'), // 指定模板文件路径
-      chunks: ['main']  // 允许插入到模板中的一些chunk，不配置此项默认会将entry中所有的thunk注入到模板中。
+      inject: false,
+      template: require('html-webpack-template'),
+      title: '生产环境',
+      appMountId: 'root'
     }),
 
     new MiniCssExtractPlugin({

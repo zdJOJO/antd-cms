@@ -32,6 +32,14 @@
       {
         "loose": true
       }
-    ]
+    ],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
+      },
+      "antd"
+    ] // `style: true` 会加载 less 文件
   ]
 }

@@ -1571,11 +1571,6 @@ ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-antd-mobile-demo-data@^0.1.3:
-  version "0.1.4"
-  resolved "https://registry.npm.taobao.org/antd-mobile-demo-data/download/antd-mobile-demo-data-0.1.4.tgz#27237fd220fba1b906fa891cab480d80b05382e9"
-  integrity sha1-JyN/0iD7obkG+okcq0gNgLBTguk=
-
 antd@^4.6.5:
   version "4.6.5"
   resolved "https://registry.npm.taobao.org/antd/download/antd-4.6.5.tgz?cache=0&sync_timestamp=1600580852131&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fantd%2Fdownload%2Fantd-4.6.5.tgz#bfa53125d43ea93f7bea1516a29a1767b76c7329"
