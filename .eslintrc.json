@@ -3,7 +3,8 @@
     "browser": true,
     "es2021": true,
     "commonjs": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "extends": [
     "eslint:recommended",
@@ -217,6 +218,10 @@
           [
             "@utils",
             "./src/utils"
+          ],
+          [
+            "@route",
+            "./src/route"
           ],
           [
             "react-dom",

@@ -1,4 +1,4 @@
-import React, { lazy, memo, Suspense, useState } from 'react'
+import React, { lazy, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
@@ -7,18 +7,18 @@ import {
   Sider,
   Footer
 } from '@components';
-
-import { menus } from '../../route/menus';
+import { RESOURCE, VTABLE, SETTING } from '@route';
+import { menus } from '@route/menus';
 
 const Home = lazy(() => import(/* webpackChunkName: 'home' */'../Home'))
 const Resource = lazy(() => import(/* webpackChunkName: 'resource' */'../Resource'))
-const Setting = lazy(() => import(/* webpackChunkName: 'home' */'../Setting'))
-const VTable = lazy(() => import(/* webpackChunkName: 'home' */'../VirtualTable'))
+const Setting = lazy(() => import(/* webpackChunkName: 'setting' */'../Setting'))
+const VTable = lazy(() => import(/* webpackChunkName: 'vatable' */'../VirtualTable'))
 
 
 const { Content } = Layout
 
-const IndexPage = () => {
+const IndexPage = (): any => {
 
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
@@ -40,14 +40,12 @@ const IndexPage = () => {
         />
         <Content>
           {/* <Breadcrumb /> */}
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/app/resource" component={Resource} />
-              <Route exact path="/app/vtable" component={VTable} />
-              <Route exact path="/app/setting" component={Setting} />
-            </Switch>
-          </Suspense>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path={RESOURCE} component={Resource} />
+            <Route exact path={VTABLE} component={VTable} />
+            <Route exact path={SETTING} component={Setting} />
+          </Switch>
         </Content>
         <Footer />
       </Layout>
@@ -55,4 +53,4 @@ const IndexPage = () => {
   )
 }
 
-export default memo(IndexPage);
+export default IndexPage;

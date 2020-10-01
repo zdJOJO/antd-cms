@@ -9,7 +9,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = "/api";
+const BASE_URL = '/api';
 
 const instance = axios.create({
   baseURL: BASE_URL,
@@ -47,8 +47,8 @@ instance.interceptors.response.use(
 
 /**
  * @description: 二次封装
- * @param {type} 
- * @return {type} 
+ * @param {type}
+ * @return {type}
  * @author: zdJOJO
  */
 

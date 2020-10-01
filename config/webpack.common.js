@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-23 21:36:05
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-01 12:52:24
+ * @LastEditTime: 2020-10-01 17:12:57
  * @FilePath: \antd-cms\config\webpack.common.js
  */
 const webpack = require('webpack');
@@ -13,7 +13,7 @@ const HappyPack = require('happypack');
 const ProgressBarWebpackPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin'); // remove it in production environment.
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // remove it in production environment.
 const otherPlugins = process.argv[1].indexOf('webpack-dev-server') >= 0 ? [] : [
@@ -74,7 +74,7 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, '../dist/'),
-    // publicPath: './js/',  // publicPath：访问时文件的目录， 打包的js
+    publicPath: '/',  // publicPath：访问时文件的目录， 打包的js
     filename: 'js/[name].[hash:8].bundle.js',
     chunkFilename: 'js/[name].[chunkhash:8].chunk.js'
   },
@@ -85,6 +85,7 @@ module.exports = {
       '@': path.resolve(__dirname, '../src'),
       '@components': path.resolve(__dirname, '../src/components'),
       '@utils': path.resolve(__dirname, '../src/utils'),
+      '@route': path.resolve(__dirname, '../src/route'),
       'react-dom': '@hot-loader/react-dom'
     }
   },
@@ -150,20 +151,17 @@ module.exports = {
 
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true // set to true if you want JS source maps
+        sourceMap: isProd ? false : true // set to true if you want JS source maps
       }),
       new OptimizeCSSAssetsPlugin({})
     ],
 
-    runtimeChunk: {
-      name: 'manifest'
-    },
-
+    runtimeChunk: true,
     splitChunks: {
-      chunks: 'async', //默认作用于异步chunk，值为all/initial/async/function(chunk),值为function时第一个参数为遍历所有入口chunk时的chunk模块，chunk._modules为chunk所有依赖的模块，通过chunk的名字和所有依赖模块的resource可以自由配置,会抽取所有满足条件chunk的公有模块，以及模块的所有依赖模块，包括css
+      chunks: 'all', //默认作用于异步chunk，值为all/initial/async/function(chunk),值为function时第一个参数为遍历所有入口chunk时的chunk模块，chunk._modules为chunk所有依赖的模块，通过chunk的名字和所有依赖模块的resource可以自由配置,会抽取所有满足条件chunk的公有模块，以及模块的所有依赖模块，包括css
       minSize: 30000,  //表示在压缩前的最小模块大小,默认值是30kb
       minChunks: 1,  // 表示被引用次数，默认为1；
       maxAsyncRequests: 5,  //所有异步请求不得超过5个
@@ -176,40 +174,32 @@ module.exports = {
         vendors: {
           name: 'vendors',
           chunks: 'all',
-          // test: /[\\/]node_modules[\\/]/,
+          test: /[\\/]node_modules[\\/]/,
           minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
           maxInitialRequests: 5,
           minSize: 0,
           priority: -10
         },
 
-        // 处理异步chunk
-        'async-vendors': {
-          name: 'async-vendors',
-          chunks: 'async',
-          test: /[\\/]node_modules[\\/]/,
-          minChunks: 2
-        },
-
-        // ‘src/js’ 下的js文件
+        // ‘src’ 下的共用文件
         common: {
-          chunks: 'all',
-          test: /[\\/]src[\\/]js[\\/].*\.js/, //也可以值文件/[\\/]src[\\/]js[\\/].*\.js/,
           name: 'common', //生成文件名，依据output规则
+          chunks: 'all',
+          test: /[\\/]src[\\/]/,
           minChunks: 2,
           maxInitialRequests: 5,
           minSize: 0,
           priority: 1
-        },
-
-        // 将css提取到一个CSS中
-        styles: {
-          name: 'styles',
-          test: /\.(sass|scss|css|less)$/,
-          chunks: 'all',    // merge all the css chunk to one file
-          enforce: true,
-          reuseExistingChunk: true
         }
+
+        // // 将css提取到一个CSS中
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.(sass|scss|css|less)$/,
+        //   chunks: 'all',    // merge all the css chunk to one file
+        //   enforce: true,
+        //   reuseExistingChunk: true
+        // }
       }
     },
     noEmitOnErrors: true  // 在编译出错时，使用 optimization.noEmitOnErrors 来跳过生成阶段(emitting phase)。这可以确保没有生成出错误资源
