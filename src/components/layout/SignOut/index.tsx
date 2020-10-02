@@ -6,7 +6,7 @@ import { userImg } from '../../../../assets';
 import { getRandomName } from '@utils';
 import { LOGIN } from '@route';
 
-import './index.less';
+import classes from './index.less';
 
 const { SubMenu } = Menu
 
@@ -55,7 +55,7 @@ const SignOut: React.FC<ISignout> = ({
 
   const languageTitle = languages.filter(i => i.key === language)[0].title
   return (
-    <span className="signout">
+    <span className={classes.signout}>
       {/* 语言菜单 */}
       <Menu
         selectedKeys={[language]}

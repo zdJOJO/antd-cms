@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-02 11:59:55
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-02 18:10:59
+ * @LastEditTime: 2020-10-03 01:27:28
  * @FilePath: \antd-cms\config\utils.js
  */
 
@@ -30,15 +30,28 @@ const cssLoder = {
 // tsx解析器
 const tsxLoader = {
   test: /\.(ts|tsx)$/,
-  use: [{
-    loader: 'babel-loader',
-    options: {
-      presets: ["@babel/env", "@babel/react", '@babel/preset-typescript'],
-      plugins: [
-        ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
-      ]
+  use: [
+    {
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          "@babel/env",
+          "@babel/react",
+          '@babel/preset-typescript'
+        ],
+        plugins: [
+          [
+            'import',
+            {
+              libraryName: 'antd',
+              libraryDirectory: 'es',
+              style: true
+            }
+          ],
+        ]
+      }
     }
-  }]
+  ]
 }
 
 // 缓存解析器
@@ -51,26 +64,71 @@ const sourceLoader = {
 // css 解析器
 const cssLoader = {
   test: /\.css$/,
-  use: [cssLoder[mode], {
-    loader: 'css-loader',
-  }]
+  use: [
+    cssLoder[mode],
+    {
+      loader: 'css-loader',
+      options: {
+        modules: false  //关闭 css-modules功能
+      }
+    }
+  ]
 }
 
 // less解析器
 const lessLoader = {
   test: /\.less$/,
-  use: [cssLoder[mode], {
-    loader: 'css-loader',
-  }, {
-    loader: 'less-loader',
-    options: {
-      lessOptions: {
-        modifyVars: require(path.resolve(__dirname, 'modifyVars.js')),
-        javascriptEnabled: true,
+  // exclude: [/node_modules/],
+  include: [/src/],
+  use: [
+    cssLoder[mode],
+    {
+      loader: 'css-loader',
+      options: {
+        // modules: true, //开启 less-modules功能
+        // localIdentName: '[name]__[local]__[hash:base64:8]'
+        modules: {
+          localIdentName: '[name]__[local]__[hash:base64:8]'
+        }
+      },
+    },
+    {
+      loader: 'less-loader',
+      options: {
+        lessOptions: {
+          modifyVars: require(path.resolve(__dirname, 'modifyVars.js')),
+          javascriptEnabled: true,
+        }
       }
     }
-  }]
+  ]
 }
+
+// 针对 ant-design 不适用 css-module
+const lessAntdDesignLoader = {
+  test: /\.less$/,
+  // exclude: [/src/],
+  include: [/[\\/]node_modules[\\/].*antd/],
+  use: [
+    cssLoder[mode],
+    {
+      loader: 'css-loader',
+      options: {
+        modules: false, //关闭 less-modules功能
+      },
+    },
+    {
+      loader: 'less-loader',
+      options: {
+        lessOptions: {
+          modifyVars: require(path.resolve(__dirname, 'modifyVars.js')),
+          javascriptEnabled: true,
+        }
+      }
+    }
+  ]
+}
+
 
 // 图片 解析器
 const fileLoader = {
@@ -90,5 +148,6 @@ module.exports = {
   sourceLoader,
   cssLoader,
   lessLoader,
+  lessAntdDesignLoader,
   fileLoader
 }

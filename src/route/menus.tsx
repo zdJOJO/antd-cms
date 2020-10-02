@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-02 15:13:28
+ * @LastEditTime: 2020-10-03 00:20:11
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React, { ReactNode } from 'react';
@@ -22,7 +22,7 @@ import {
   VTABLE,
   SETTING
 } from './';
-import { IMenu } from 'index';
+import { IMenu } from 'types/index';
 
 export const menus: Array<IMenu> = [
   {

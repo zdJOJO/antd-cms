@@ -4,12 +4,11 @@ import { useHistory, useLocation } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
 
-import { IMenu } from 'index'
-// import { logo } from '@assets';
+import { IMenu } from 'types/index'
 import { logo } from '../../../../assets';
 
 
-import './index.less';
+import classes from './index.less';
 
 const { SubMenu } = Menu
 const MenuItem = Menu.Item
@@ -79,9 +78,9 @@ const Sider: React.FC<ISider> = ({
       collapsible
       collapsed={collapsed}
     >
-      <div className='logo'>
+      <div className={classes.logo}>
         <img src={logo} />
-        <span className={collapsed ? 'hide' : ''}>Solar System</span>
+        <span className={collapsed ? classes.hide : ''}>Solar System</span>
       </div>
       <Menu
         theme="dark"

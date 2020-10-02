@@ -1,3 +1,12 @@
+/*
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2020-09-26 18:45:37
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-10-03 00:21:10
+ * @FilePath: \antd-cms\types\index.d.ts
+ */
+
 import { ReactNode } from 'react';
 
 /**

@@ -36,6 +36,7 @@ const {
   mode,
   isPro,
   lessLoader,
+  lessAntdDesignLoader,
   cssLoader,
   tsxLoader,
   sourceLoader,
@@ -97,6 +98,7 @@ module.exports = {
       isPro ? null : sourceLoader,
       cssLoader,
       lessLoader,
+      lessAntdDesignLoader,
       fileLoader
     ].filter(Boolean)
   },
@@ -112,7 +114,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../template/index.html'),  // 入口文件,
       inject: true,
-      title: 'Test App',
+      title: 'The Nebula',
       minify: {
         removeComments: true,                   // 移除注释
         collapseWhitespace: true               // 移除空格

@@ -1,5 +1,7 @@
 import React, { FC, memo, useState } from 'react'
 
+import classes from './index.less';
+
 interface IHome {
 
 }
@@ -7,7 +9,7 @@ interface IHome {
 const Home: FC<IHome> = (props) => {
   return (
     <>
-      首页
+      <div className={classes.welcome} >首页</div>
     </>
   )
 }
