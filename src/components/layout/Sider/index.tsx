@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
-
-import { IMenu } from '../../../../index';
+import { IMenu } from 'index'
 
 const { SubMenu } = Menu
 const MenuItem = Menu.Item

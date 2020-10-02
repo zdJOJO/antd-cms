@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-01 19:42:13
+ * @LastEditTime: 2020-10-02 15:13:28
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React, { ReactNode } from 'react';
@@ -22,20 +22,7 @@ import {
   VTABLE,
   SETTING
 } from './';
-
-/**
- * path需要保持唯一
- * permKey 表示权限Key值  permKey: true表示所有用户都有权限
- * enName 表示翻译文本对应的key
- */
-interface IMenu {
-  path: string
-  name: string
-  en_name: string
-  permKey: string | boolean
-  icon?: string | ReactNode
-  children?: Array<IMenu>
-}
+import { IMenu } from 'index';
 
 export const menus: Array<IMenu> = [
   {
