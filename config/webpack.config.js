@@ -38,7 +38,8 @@ const {
   lessLoader,
   cssLoader,
   tsxLoader,
-  sourceLoader
+  sourceLoader,
+  fileLoader
 } = require('./utils');
 
 module.exports = {
@@ -95,7 +96,8 @@ module.exports = {
       tsxLoader,
       isPro ? null : sourceLoader,
       cssLoader,
-      lessLoader
+      lessLoader,
+      fileLoader
     ].filter(Boolean)
   },
 

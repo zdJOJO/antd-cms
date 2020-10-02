@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-02 11:59:55
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-02 14:19:06
- * @FilePath: \test\config\utils.js
+ * @LastEditTime: 2020-10-02 18:10:59
+ * @FilePath: \antd-cms\config\utils.js
  */
 
 
@@ -72,11 +72,23 @@ const lessLoader = {
   }]
 }
 
+// 图片 解析器
+const fileLoader = {
+  test: /\.(jpg|png|gif|svg)$/,
+  loader: 'url-loader',
+  options: {
+    limit: 1024 * 8, // 8k以下的base64内联，不产生图片文件
+    fallback: 'file-loader', // 8k以上，用file-loader抽离（非必须，默认就是file-loader）
+    name: '[name].[ext]?[hash]', // 文件名规则，默认是[hash].[ext]
+  }
+}
+
 module.exports = {
   mode,
   isPro,
   tsxLoader,
   sourceLoader,
   cssLoader,
-  lessLoader
+  lessLoader,
+  fileLoader
 }

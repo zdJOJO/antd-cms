@@ -7,7 +7,7 @@ import {
   Sider,
   Footer
 } from '@components';
-import { RESOURCE, VTABLE, SETTING } from '@route';
+import { VTABLE, SETTING } from '@route';
 import { menus } from '@route/menus';
 
 const Home = lazy(() => import(/* webpackChunkName: 'home' */'../Home'))
@@ -27,20 +27,20 @@ const IndexPage = (): any => {
   }
 
   return (
-    <Layout>
+    <Layout style={{ height: "100vh" }}>
+
       <Sider
         menus={menus}
         collapsed={collapsed}
       />
-      <Layout>
 
+      <Layout className="site-layout">
         <Header
           collapsed={collapsed}
-          history={history}
           toggle={handleToggle}
         />
 
-        <Content>
+        <Content style={{ margin: '24px 16px 0' }}>
           {/* <Breadcrumb /> */}
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>

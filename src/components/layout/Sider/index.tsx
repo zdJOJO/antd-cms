@@ -3,7 +3,13 @@ import React, { useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
+
 import { IMenu } from 'index'
+// import { logo } from '@assets';
+import { logo } from '../../../../assets';
+
+
+import './index.less';
 
 const { SubMenu } = Menu
 const MenuItem = Menu.Item
@@ -33,13 +39,13 @@ const Sider: React.FC<ISider> = ({
   const history = useHistory();
   const location = useLocation();
 
-  const [selectedKey, setSelectedKey] = useState('');
-  const [defaultOpenKeys, setDefaultOpenKeys] = useState(getDefaultOpenKeys(location.pathname));
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([location.pathname]);
 
-
-  const onClick = (item: any) => {
-    console.log(item.key);
-    history.replace(item.key)
+  const onClick = ({ item, key, keyPath, domEvent }: any) => {
+    console.log(key);
+    setSelectedKeys([key]);
+    if (key === location.pathname) return;
+    history.push(key);
   }
 
   const generateMenuItem = (menus: IMenu[]) => {
@@ -68,17 +74,21 @@ const Sider: React.FC<ISider> = ({
   }
 
   return (
-    <Layout.Sider trigger={null} collapsible collapsed={collapsed}>
-      {/* <div >
-        <img src='' />
-        <span className={collapsed ? styles.hide : ''}>{translateText({ id: 'SystemName' })}</span>
-      </div> */}
+    <Layout.Sider
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+    >
+      <div className='logo'>
+        <img src={logo} />
+        <span className={collapsed ? 'hide' : ''}>Solar System</span>
+      </div>
       <Menu
         theme="dark"
         mode="inline"
         onClick={onClick}
-        selectedKeys={[selectedKey]}
-        defaultOpenKeys={defaultOpenKeys}
+        selectedKeys={selectedKeys}
+        defaultOpenKeys={getDefaultOpenKeys(location.pathname)}
       >
         {generateMenuItem(menus)}
       </Menu>

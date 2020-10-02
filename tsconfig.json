@@ -19,6 +19,9 @@
     "esModuleInterop": true, /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     "experimentalDecorators": true, /* Enables experimental support for ES7 decorators. */
     "paths": {
+      "@assets": [
+        "assets"
+      ],
       "@assets/*": [
         "assets/*"
       ],
@@ -50,5 +53,6 @@
   ],
   "files": [
     "index.d.ts",
+    "images.d.ts"
   ]
 }
