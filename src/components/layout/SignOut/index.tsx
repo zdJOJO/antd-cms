@@ -18,12 +18,12 @@ interface Ilanguage {
 
 const languages = [
   {
-    key: "cn",
-    title: "中文"
+    key: 'cn',
+    title: '中文'
   },
   {
-    key: "en",
-    title: "English"
+    key: 'en',
+    title: 'English'
   }
 ]
 

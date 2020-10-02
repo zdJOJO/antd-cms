@@ -27,7 +27,7 @@ const IndexPage = (): any => {
   }
 
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: '100vh' }}>
 
       <Sider
         menus={menus}

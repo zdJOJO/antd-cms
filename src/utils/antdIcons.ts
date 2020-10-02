@@ -3,12 +3,12 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-01 18:58:19
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-02 16:15:04
+ * @LastEditTime: 2020-10-03 02:27:35
  * @FilePath: \antd-cms\src\utils\antdIcons.ts
  */
 export { default as MenuUnfoldOutlined } from '@ant-design/icons/MenuUnfoldOutlined';
 export { default as MenuFoldOutlined } from '@ant-design/icons/MenuFoldOutlined';
-export { default as UserOutlined } from '@ant-design/icons/UserOutlined';
+export { default as UserOutlined } from '@ant-design/icons/UserAddOutlined';
 export { default as HomeOutlined } from '@ant-design/icons/HomeOutlined';
 export { default as ApartmentOutlined } from '@ant-design/icons/ApartmentOutlined';
 export { default as SettingOutlined } from '@ant-design/icons/SettingOutlined';

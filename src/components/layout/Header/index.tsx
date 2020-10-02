@@ -7,7 +7,7 @@ import {
 
 import SignOut from '../SignOut';
 
-import classes from "./index.less"
+import classes from './index.less'
 
 interface IHeader {
   collapsed: boolean,
@@ -19,10 +19,13 @@ const Header: React.FC<IHeader> = ({
   toggle
 }) => {
   return (
-    <Layout.Header className={classes.layOutHeader} style={{ padding: 0 }}>
+    <Layout.Header
+      className={classes.layOutHeader}
+      style={{ padding: 0 }}
+    >
       {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
         className: classes.trigger,
-        onClick: toggle,
+        onClick: toggle
       })}
       <SignOut />
     </Layout.Header>

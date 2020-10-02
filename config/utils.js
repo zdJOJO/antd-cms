@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-02 11:59:55
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 01:27:28
+ * @LastEditTime: 2020-10-03 01:37:31
  * @FilePath: \antd-cms\config\utils.js
  */
 
@@ -104,7 +104,7 @@ const lessLoader = {
   ]
 }
 
-// 针对 ant-design 不适用 css-module
+// 针对 ant-design 不使用 css-module
 const lessAntdDesignLoader = {
   test: /\.less$/,
   // exclude: [/src/],
