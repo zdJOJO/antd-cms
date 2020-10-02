@@ -23,5 +23,5 @@ const App: React.FC<any> = () => {
   )
 }
 
-// export default hot(App);
-export default App;
+export default hot(App);
+// export default App;
