@@ -3,27 +3,13 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 19:39:20
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 20:03:11
- * @FilePath: \antd-cms\postcss.config.js
+ * @LastEditTime: 2020-09-26 00:09:02
+ * @FilePath: \test\postcss.config.js
  */
-
-
-// module.exports = {
-//   plugins: [
-//     require('cssnano'),
-//     require('autoprefixer')({
-//       overrideBrowserslist: [
-//         'last 2 versions',
-//         'Firefox ESR',
-//         '> 1%',
-//         'ie >= 8',
-//         'iOS >= 8',
-//         'Android >= 4'
-//       ],
-//     })
-//   ]
-// };
-
+// browserslist 配置在 package.js中
 module.exports = {
-  plugins: [require('autoprefixer')]
-}
+  plugins: [
+    require('autoprefixer'),
+    require('cssnano')
+  ]
+};

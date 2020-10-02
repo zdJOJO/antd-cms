@@ -6,10 +6,8 @@ import { Layout, Menu } from 'antd'
 
 import { IMenu } from '../../../../index';
 
-
 const { SubMenu } = Menu
 const MenuItem = Menu.Item
-
 
 function getDefaultOpenKeys(pathname: string): Array<string> {
   const paths = (pathname || '').split('/')
@@ -41,7 +39,8 @@ const Sider: React.FC<ISider> = ({
 
 
   const onClick = (item: any) => {
-    history.push(item.key)
+    console.log(item.key);
+    history.replace(item.key)
   }
 
   const generateMenuItem = (menus: IMenu[]) => {
@@ -51,21 +50,19 @@ const Sider: React.FC<ISider> = ({
         return (
           <SubMenu
             key={path}
-            title={
-              <span>
-                {/* {icon && <Icon type={icon} />} */}
-                <span>{name}</span>
-              </span>
-            }
+            icon={icon}
+            title={name}
           >
             {generateMenuItem(children)}
           </SubMenu>
         )
       }
       return (
-        <MenuItem key={path}>
-          {/* { icon && <Icon type={icon} />} */}
-          <span>{name}</span>
+        <MenuItem
+          key={path}
+          icon={icon}
+        >
+          {name}
         </MenuItem>
       )
     })
