@@ -60,7 +60,7 @@ module.exports = {
   // 出口
   output: {
     path: path.join(__dirname, '../dist/'),
-    // publicPath: '/',  // publicPath：访问时文件的目录， 打包的js
+    publicPath: '/',  // 配和 BrowserRouter
     filename: 'js/[name].[hash:8].bundle.js',
     chunkFilename: 'js/[name].[chunkhash:8].chunk.js'
   },

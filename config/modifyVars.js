@@ -3,10 +3,11 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-02 12:14:49
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-02 14:13:26
- * @FilePath: \test\config\modifyVars.js
+ * @LastEditTime: 2020-10-03 15:23:42
+ * @FilePath: \antd-cms\config\modifyVars.js
  */
 module.exports = {
-  // "primary-color": "#009688",
-  // "menu-item-active-bg": "#009688",
+  'primary-color': '#03DAC5',
+  'layout-header-background': '#121212',
+  'menu-dark-submenu-bg': '#000000'
 }

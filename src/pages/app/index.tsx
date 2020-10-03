@@ -5,15 +5,18 @@ import { Layout } from 'antd'
 import {
   Header,
   Sider,
-  Footer
+  Footer,
+  Breadcrumbs
 } from '@components';
-import { VTABLE, SETTING } from '@route';
+import { ROOT, VTABLE, SETTING } from '@route';
 import { menus } from '@route/menus';
 
 const Home = lazy(() => import(/* webpackChunkName: 'home' */'../Home'))
 const Setting = lazy(() => import(/* webpackChunkName: 'setting' */'../Setting'))
 const VTable = lazy(() => import(/* webpackChunkName: 'vatable' */'../VirtualTable'))
 import Resource from '../Resource';
+
+import classes from './index.less';
 
 
 const { Content } = Layout
@@ -34,22 +37,24 @@ const IndexPage = (): any => {
         collapsed={collapsed}
       />
 
-      <Layout className="site-layout">
+      <Layout>
         <Header
           collapsed={collapsed}
           toggle={handleToggle}
         />
 
-        <Content style={{ margin: '24px 16px 0' }}>
-          {/* <Breadcrumb /> */}
-          <Suspense fallback={<div>Loading...</div>}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path={VTABLE} component={VTable} />
-              <Route exact path={SETTING} component={Setting} />
-              <Resource />
-            </Switch>
-          </Suspense>
+        <Content className={classes.content}>
+          <Breadcrumbs menus={menus} />
+          <div className={classes.mainContent}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route exact path={ROOT} component={Home} />
+                <Route exact path={VTABLE} component={VTable} />
+                <Route exact path={SETTING} component={Setting} />
+                <Resource />
+              </Switch>
+            </Suspense>
+          </div>
         </Content>
 
         <Footer />

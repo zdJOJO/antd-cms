@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { useHistory } from 'react-router-dom';
-import { Layout, Menu, Avatar } from 'antd'
+import { Menu, Avatar } from 'antd'
 
 import { userImg } from '../../../../assets';
 import { getRandomName } from '@utils';
@@ -61,6 +61,7 @@ const SignOut: React.FC<ISignout> = ({
         selectedKeys={[language]}
         onClick={hangleChangeLanguage}
         mode="horizontal"
+        theme="dark"
       >
         <SubMenu
           title={languageTitle}
@@ -73,7 +74,12 @@ const SignOut: React.FC<ISignout> = ({
         </SubMenu>
       </Menu>
       {/* 登陆用户问候语 */}
-      <Menu key="user" mode="horizontal" onClick={signout}>
+      <Menu
+        key="user"
+        theme="dark"
+        mode="horizontal"
+        onClick={signout}
+      >
         <SubMenu
           title={
             <>

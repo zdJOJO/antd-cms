@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 02:14:22
+ * @LastEditTime: 2020-10-03 14:13:15
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React from 'react';
@@ -24,6 +24,8 @@ import {
 } from './';
 import { IMenu } from 'types/index';
 
+
+
 export const menus: Array<IMenu> = [
   {
     name: '首页',
@@ -42,13 +44,13 @@ export const menus: Array<IMenu> = [
     children: [
       {
         name: '角色管理',
-        en_name: 'Role Management',
+        en_name: 'Role',
         path: RESOURCE_ROLE,
         permKey: 'menu.roleManage'
       },
       {
         name: '资金管理',
-        en_name: 'Fund Management',
+        en_name: 'Fund',
         path: RESOURCE_FUND,
         permKey: 'menu.fundManage'
       }
@@ -68,4 +70,4 @@ export const menus: Array<IMenu> = [
     icon: <SettingOutlined />,
     permKey: true
   }
-]
+];

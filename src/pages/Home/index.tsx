@@ -9,7 +9,9 @@ interface IHome {
 const Home: FC<IHome> = (props) => {
   return (
     <>
-      <div className={classes.welcome} >首页</div>
+      <div className={classes.welcome} >
+        首页
+      </div>
     </>
   )
 }
