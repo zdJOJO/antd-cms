@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 18:45:37
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 13:20:10
+ * @LastEditTime: 2020-10-03 18:15:08
  * @FilePath: \antd-cms\types\index.d.ts
  */
 
@@ -21,6 +21,13 @@ export interface IMenu {
   permKey: string | boolean
   icon?: string | ReactNode
   children?: Array<IMenu>
+}
+
+export interface IHeadMenu {
+  key: string
+  label: string
+  icon?: string | ReactNode
+  local?: string
 }
 
 

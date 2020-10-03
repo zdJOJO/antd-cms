@@ -1,24 +1,39 @@
+@headerLingHeight: 48px;
+
 .layOutHeader {
-  padding: 0;
+  padding: 0 20px;
   box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
   position: relative;
   display: flex;
   justify-content: space-between;
-  height: 64px;
   z-index: 9;
   align-items: center;
+  height: @headerLingHeight;
 
   .trigger {
     font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
     cursor: pointer;
     transition: color 0.3s;
     color: #fff;
+    flex: auto;
+    text-align: left;
   }
 
   .trigger:hover {
     color: @primary-color;
+  }
+
+  .drowdownBtn {
+    line-height: @headerLingHeight;
+  }
+
+  .localIcon {
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+
   }
 
 }

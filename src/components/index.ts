@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 17:37:46
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 13:58:15
+ * @LastEditTime: 2020-10-03 18:54:47
  * @FilePath: \antd-cms\src\components\index.ts
  */
 import {
@@ -12,10 +12,18 @@ import {
   Footer
 } from './Layout';
 import Breadcrumbs from './Breadcrumbs';
+import {
+  ChinaIcon,
+  JapanIcon,
+  EnglandIcon
+} from './LocalIcons';
 
 export {
   Header,
   Sider,
   Footer,
-  Breadcrumbs
+  Breadcrumbs,
+  ChinaIcon,
+  JapanIcon,
+  EnglandIcon
 }
