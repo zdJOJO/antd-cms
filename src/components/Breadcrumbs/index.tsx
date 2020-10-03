@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Breadcrumb } from 'antd';
 
 import { getBreadcrumbNameMap } from '@route';
-import { IMenu } from 'types';
+import { IMenu } from '@types';
 
 import classes from './index.less';
 

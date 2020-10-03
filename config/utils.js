@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-02 11:59:55
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 01:37:31
+ * @LastEditTime: 2020-10-03 19:52:26
  * @FilePath: \antd-cms\config\utils.js
  */
 
@@ -20,10 +20,10 @@ const isPro = mode === 'production';
 // cssloader对象
 const cssLoder = {
   'production': {
-    loader: MiniCssExtractPlugin.loader,
+    loader: MiniCssExtractPlugin.loader
   },
   'development': {
-    loader: "style-loader"
+    loader: 'style-loader'
   }
 }
 
@@ -35,8 +35,8 @@ const tsxLoader = {
       loader: 'babel-loader',
       options: {
         presets: [
-          "@babel/env",
-          "@babel/react",
+          '@babel/env',
+          '@babel/react',
           '@babel/preset-typescript'
         ],
         plugins: [
@@ -47,7 +47,7 @@ const tsxLoader = {
               libraryDirectory: 'es',
               style: true
             }
-          ],
+          ]
         ]
       }
     }
@@ -56,9 +56,9 @@ const tsxLoader = {
 
 // 缓存解析器
 const sourceLoader = {
-  enforce: "pre",
+  enforce: 'pre',
   test: /\.js$/,
-  loader: "source-map-loader"
+  loader: 'source-map-loader'
 }
 
 // css 解析器
@@ -85,19 +85,17 @@ const lessLoader = {
     {
       loader: 'css-loader',
       options: {
-        // modules: true, //开启 less-modules功能
-        // localIdentName: '[name]__[local]__[hash:base64:8]'
         modules: {
           localIdentName: '[name]__[local]__[hash:base64:8]'
         }
-      },
+      }
     },
     {
       loader: 'less-loader',
       options: {
         lessOptions: {
           modifyVars: require(path.resolve(__dirname, 'modifyVars.js')),
-          javascriptEnabled: true,
+          javascriptEnabled: true
         }
       }
     }
@@ -114,15 +112,15 @@ const lessAntdDesignLoader = {
     {
       loader: 'css-loader',
       options: {
-        modules: false, //关闭 less-modules功能
-      },
+        modules: false //关闭 less-modules功能
+      }
     },
     {
       loader: 'less-loader',
       options: {
         lessOptions: {
           modifyVars: require(path.resolve(__dirname, 'modifyVars.js')),
-          javascriptEnabled: true,
+          javascriptEnabled: true
         }
       }
     }
@@ -137,7 +135,7 @@ const fileLoader = {
   options: {
     limit: 1024 * 8, // 8k以下的base64内联，不产生图片文件
     fallback: 'file-loader', // 8k以上，用file-loader抽离（非必须，默认就是file-loader）
-    name: '[name].[ext]?[hash]', // 文件名规则，默认是[hash].[ext]
+    name: '[name].[ext]?[hash]' // 文件名规则，默认是[hash].[ext]
   }
 }
 

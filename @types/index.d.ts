@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 18:45:37
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 18:15:08
+ * @LastEditTime: 2020-10-03 19:18:53
  * @FilePath: \antd-cms\types\index.d.ts
  */
 
@@ -39,3 +39,4 @@ export interface IRoute {
     breadcrumbName: string;
   }>;
 }
+

@@ -5,9 +5,15 @@
 ##  如果 `import classes from './index.less'` ts检测报错
 
 ```
-yarn add -D @teamsupercell/typings-for-css-modules-loader
 
-https://github.com/Jimdo/typings-for-css-modules-loader
+根目录创建 @types 文件夹
+
+创建文件 less.d.ts 
+
+declare module '*.less' {
+  const classes: { [className: string]: string };
+  export default classes;
+}
 
 ```
 

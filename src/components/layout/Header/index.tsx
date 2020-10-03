@@ -19,7 +19,7 @@ import {
 } from '../../../../assets/';
 
 import classes from './index.less'
-import { IHeadMenu } from 'types';
+import { IHeadMenu } from '@types';
 
 
 interface IHeader {
