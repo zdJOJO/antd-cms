@@ -35,7 +35,7 @@ const userMenus: Array<IHeadMenu> = [
   },
   {
     key: LOGIN,
-    label: 'Sign Out',
+    label: 'Sign out',
     icon: <LogoutOutlined />
   }
 ]
@@ -138,8 +138,8 @@ const Header: React.FC<IHeader> = ({
       >
         <a className={classes.drowdownBtn} onClick={e => e.preventDefault()}>
           <span style={{ color: '#999', paddingRight: 5 }}> Hi </span>
-          <span style={{ paddingRight: 5 }}>{userName}</span>
-          <Avatar src={userImg} />
+          <span style={{ padding: '0 10px' }}>{userName}</span>
+          <Avatar shape="circle" src={userImg} />
         </a>
       </HeaderDropdown>
     </Layout.Header>

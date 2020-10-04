@@ -1,0 +1,65 @@
+.bg {
+  background: url(../../../assets/images/background.png) no-repeat 0 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loginContainer {
+  width: 400px;
+  margin: 100px auto 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+  border-radius: 4px;
+  position: relative;
+  padding: 60px 20px 20px 20px;
+
+  .formItem {
+    justify-content: center;
+  }
+
+  .signInBtn {
+    width: 100%;
+  }
+
+  .createAccountBtn {
+    float: left;
+    padding-left: 0;
+  }
+
+  .forgetPwdBtn {
+    float: right;
+    padding-right: 0;
+  }
+
+  .userImg {
+    background-color: #2D2B32;
+    border: 1px solid #00968840;
+    padding: 5px;
+    width: 66px;
+    height: 66px;
+    line-height: 60px;
+    position: absolute;
+    top: -33px;
+    left: 50%;
+    margin-left: -33px;
+    text-align: center;
+    font-size: 30px;
+    transition: all 0.2s;
+    transition-timing-function: ease-in;
+    transition-delay: 0.1s;
+    filter: blur(1px);
+
+    &.userImgFoucsed {
+    filter: blur(0);
+    border: 1px solid #009688;
+    box-shadow: 0 0 10px #009688;
+  }
+  }
+
+  .remember {
+    color: #fff;
+    opacity: 0.4
+  }
+
+}
