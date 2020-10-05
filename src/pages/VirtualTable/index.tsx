@@ -1,10 +1,10 @@
-import React, { FC, memo, useEffect } from 'react'
+import React, { FC, memo, useState, useEffect } from 'react'
 
 import { Key } from 'antd/lib/table/interface';
 
 import { VirtualTable } from '@components';
 import columns from './columns';
-import { usetableData } from '@hooks';
+import http from '@http';
 import '@mock/interstellar';
 
 
@@ -23,9 +23,23 @@ const rowSelection = {
 
 const VTable: FC<IVTable> = ({ ...props }) => {
   const dom = document.getElementById('pageContainer') as HTMLElement;
-  const [data, loading, error, getData] = usetableData('/tabledata');
+  const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // 获取表格数据
+  const getData = async () => {
+    setLoading(true)
+    try {
+      const result = await http.get('/tabledata');
+      setData([...result.list])
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false)
+    }
+  }
   useEffect(() => {
-    getData()
+    getData();
   }, [])
   return (
     <VirtualTable
@@ -34,6 +48,7 @@ const VTable: FC<IVTable> = ({ ...props }) => {
       scroll={{
         y: dom.offsetHeight - 75
       }}
+      // rowSelection={rowSelection}
       columns={columns}
       dataSource={data}
       loading={loading}

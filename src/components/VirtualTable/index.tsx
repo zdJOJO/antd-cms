@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, FC } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 import ResizeObserver from 'rc-resize-observer';
@@ -92,12 +93,7 @@ const VirtualTable: FC<IVirtualTable<any>> = ({
               className={classNames('virtual-table-cell', {
                 'virtual-table-cell-last': columnIndex === mergedColumns.length - 1
               })}
-              style={{
-                ...style,
-                borderBottom: '1px solid #e8e8e8',
-                display: 'flex',
-                alignItems: 'center'
-              }}
+              style={style}
             >
               {text}
             </div>
@@ -116,8 +112,11 @@ const VirtualTable: FC<IVirtualTable<any>> = ({
         {...props}
         columns={mergedColumns}
         pagination={false}
-        scroll={scroll}
-        components={{
+        scroll={{
+          y: props.dataSource?.length === 0 ? undefined : scroll.y,
+          x: props.dataSource?.length === 0 ? undefined : scroll.x
+        }}
+        components={props.dataSource?.length === 0 ? undefined : {
           body: renderVirtualList
         }}
       />
