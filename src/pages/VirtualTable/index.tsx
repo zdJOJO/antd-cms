@@ -7,7 +7,6 @@ import columns from './columns';
 import http from '@http';
 import '@mock/interstellar';
 
-
 interface IVTable {
 }
 
