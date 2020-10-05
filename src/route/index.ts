@@ -3,10 +3,10 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 17:34:43
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 14:19:48
+ * @LastEditTime: 2020-10-05 14:20:38
  * @FilePath: \antd-cms\src\route\index.ts
  */
-import { IMenu } from 'types/index';
+import { IMenu } from '@types';
 
 export const ROOT = '/app';
 export const LOGIN = '/login';

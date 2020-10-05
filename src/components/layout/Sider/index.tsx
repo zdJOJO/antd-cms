@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 
 import { Layout, Menu } from 'antd'
 
-import { IMenu } from 'types/index'
+import { IMenu } from '@types'
 import { logo } from '../../../../assets';
 
 
@@ -41,7 +41,6 @@ const Sider: React.FC<ISider> = ({
   const [selectedKeys, setSelectedKeys] = useState<string[]>([location.pathname]);
 
   const onClick = ({ item, key, keyPath, domEvent }: any) => {
-    console.log(key);
     setSelectedKeys([key]);
     if (key === location.pathname) return;
     history.push(key);

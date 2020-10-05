@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 14:13:15
+ * @LastEditTime: 2020-10-05 12:50:44
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React from 'react';
@@ -22,21 +22,19 @@ import {
   VTABLE,
   SETTING
 } from './';
-import { IMenu } from 'types/index';
-
-
+import { IMenu } from '@types';
 
 export const menus: Array<IMenu> = [
   {
-    name: '首页',
-    en_name: 'Home',
+    name: 'Nebula',
+    en_name: 'Nebula',
     path: ROOT,
     icon: <HomeOutlined />,
     permKey: true,
     children: []
   },
   {
-    name: '资源管理',
+    name: '管理',
     en_name: 'Resource Management',
     path: RESOURCE,
     icon: <ApartmentOutlined />,
@@ -57,8 +55,8 @@ export const menus: Array<IMenu> = [
     ]
   },
   {
-    name: '虚拟表格',
-    en_name: 'Virtual Table',
+    name: '星际表格',
+    en_name: 'Interstellar Table',
     path: VTABLE,
     icon: <TableOutlined />,
     permKey: true
