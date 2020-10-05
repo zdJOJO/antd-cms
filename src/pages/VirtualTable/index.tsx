@@ -1,13 +1,50 @@
-import React, { FC, memo, useState } from 'react'
+import React, { FC, memo, useEffect } from 'react'
+
+import { Table } from 'antd';
+
+import { Key } from 'antd/lib/table/interface';
+import columns from './columns';
+import { usetableData } from '@hooks';
+import '@mock/interstellar';
+
 
 interface IVTable {
 
 }
 
-const VTable: FC<IVTable> = (props) => {
+const rowSelection = {
+  onChange: (selectedRowKeys: Key[], selectedRows: any[]) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+  },
+  getCheckboxProps: (record: any) => ({
+    disabled: record.name === 'Disabled User', // Column configuration not to be checked
+    name: record.name
+  })
+};
+
+const VTable: FC<IVTable> = ({ ...props }) => {
+
+  const [data, loading, error, getData] = usetableData('/tabledata');
+  useEffect(() => {
+    getData()
+  }, [])
   return (
     <>
-      虚拟表格
+      <Table
+        pagination={false}
+        size="small"
+        rowKey="id"
+        scroll={{
+          y: '79vh'
+        }}
+        rowSelection={{
+          type: 'checkbox',
+          ...rowSelection
+        }}
+        columns={columns}
+        dataSource={data}
+        loading={loading}
+      />
     </>
   )
 }

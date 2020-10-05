@@ -228,8 +228,16 @@
             "./src/route"
           ],
           [
-            "react-dom",
-            "@hot-loader/react-dom"
+            "@hooks",
+            "./src/hooks"
+          ],
+          [
+            "@http",
+            "./src/http"
+          ],
+          [
+            "@mock",
+            "./src/mock"
           ]
         ],
         "extensions": [

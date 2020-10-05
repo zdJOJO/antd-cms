@@ -85,9 +85,12 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, '../src'),
       '@components': path.resolve(__dirname, '../src/components'),
-      '@utils': path.resolve(__dirname, '../src/utils'),
-      '@route': path.resolve(__dirname, '../src/route'),
-      'react-dom': '@hot-loader/react-dom'
+      '@utils': path.resolve(__dirname, '../src/utils'),   // 组件
+      '@route': path.resolve(__dirname, '../src/route'),  // 路由配置
+      '@hooks': path.resolve(__dirname, '../src/hooks'), // 自定义hook
+      '@http': path.resolve(__dirname, '../src/http'),  // axois 拦截器
+      '@mock': path.resolve(__dirname, '../src/mock'),  // mock 虚拟数据
+      'react-dom': mode === 'development' ? '@hot-loader/react-dom' : 'react-dom'
     }
   },
 

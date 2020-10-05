@@ -4,15 +4,16 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:49:22
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-09-26 18:48:37
+ * @LastEditTime: 2020-10-05 15:00:43
  */
 
+import { message } from 'antd';
 import axios from 'axios';
 
 const BASE_URL = '/api';
 
 const instance = axios.create({
-  baseURL: BASE_URL,
+  // baseURL: BASE_URL,
   timeout: 30000
 })
 
@@ -38,7 +39,8 @@ instance.interceptors.response.use(
     }
   },
   error => {
-    console.log(`${error}😢`);
+    message.error(`${error} 😢`);
+    console.log(`${error} 😢`);
     return;
   });
 
@@ -52,31 +54,38 @@ instance.interceptors.response.use(
  * @author: zdJOJO
  */
 
+let msg = '';
 const http = {
-
-  get: function (url: string, isForm = false, isMsg = false) {
+  get: function (url: string, isForm?: boolean, isMsg?: boolean): any {
     return instance.get(url)
       .then(response => {
+        console.log(22222222222);
+        console.log(response);
         if (response.data.status === 0) {
-          if (response.data.message.length > 0) {
+          if (response.data.list.length > 0) {
             if (isMsg) {
-              console.log(`为您跟新${response.data.message.length} 条信息 😀`);
+              msg = `为您跟新${response.data.list.length} 条信息 😀`;
+              message.info(msg, 2)
+              console.log(msg);
             }
           } else {
-            // Toast.info(`已无更多信息 🙂`, 1.5)
+            msg = '已无更多信息 🙂';
+            message.info(msg, 2)
           }
-          return response.data.message
+          return response.data
         } else {
-          // Toast.fail(`${response.data.message} 😢`);
+          msg = `${response.data.message} 😢`;
+          message.error(msg);
           return
         }
       }).catch(err => {
-        // Toast.fail(`请求失败${err} 😢`);
+        msg = `请求失败${err} 😢`;
+        console.log(msg);
         return Promise.reject(err)
       })
   },
 
-  post: function (url: string, param: any, isForm = false) {
+  post: function (url: string, param: any, isForm = false): any {
     let contentType = 'application/json;charset=UTF-8';
     if (isForm) {
       contentType = 'application/x-www-form-urlencoded';
@@ -96,11 +105,13 @@ const http = {
             msg: response.data.message
           }
         } else {
-          // Toast.fail(`${response.data.message} 😢`);
+          msg = `${response.data.message} 😢`;
+          message.error(msg);
           return
         }
       }).catch(err => {
-        // Toast.fail(`请求失败${err} 😢`);
+        msg = `请求失败${err} 😢`;
+        console.log(msg);
         return Promise.reject(err)
       })
   },

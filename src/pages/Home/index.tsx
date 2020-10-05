@@ -10,7 +10,7 @@ const Home: FC<IHome> = (props) => {
   return (
     <>
       <div className={classes.welcome} >
-        首页
+        Welcome to Nebula
       </div>
     </>
   )
