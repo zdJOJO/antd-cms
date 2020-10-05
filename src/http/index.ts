@@ -4,7 +4,7 @@
  * @Autor: zhangding
  * @Date: 2020-08-21 22:49:22
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-05 15:00:43
+ * @LastEditTime: 2020-10-05 16:15:23
  */
 
 import { message } from 'antd';
@@ -59,8 +59,6 @@ const http = {
   get: function (url: string, isForm?: boolean, isMsg?: boolean): any {
     return instance.get(url)
       .then(response => {
-        console.log(22222222222);
-        console.log(response);
         if (response.data.status === 0) {
           if (response.data.list.length > 0) {
             if (isMsg) {

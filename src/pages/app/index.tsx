@@ -45,7 +45,7 @@ const IndexPage = (): any => {
 
         <Content className={classes.content}>
           <Breadcrumbs menus={menus} />
-          <div className={classes.mainContent}>
+          <div id="pageContainer" className={classes.mainContent}>
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
                 <Route exact path={ROOT} component={Home} />

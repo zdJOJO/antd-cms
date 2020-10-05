@@ -1,15 +1,14 @@
 import React, { FC, memo, useEffect } from 'react'
 
-import { Table } from 'antd';
-
 import { Key } from 'antd/lib/table/interface';
+
+import { VirtualTable } from '@components';
 import columns from './columns';
 import { usetableData } from '@hooks';
 import '@mock/interstellar';
 
 
 interface IVTable {
-
 }
 
 const rowSelection = {
@@ -23,29 +22,22 @@ const rowSelection = {
 };
 
 const VTable: FC<IVTable> = ({ ...props }) => {
-
+  const dom = document.getElementById('pageContainer') as HTMLElement;
   const [data, loading, error, getData] = usetableData('/tabledata');
   useEffect(() => {
     getData()
   }, [])
   return (
-    <>
-      <Table
-        pagination={false}
-        size="small"
-        rowKey="id"
-        scroll={{
-          y: '79vh'
-        }}
-        rowSelection={{
-          type: 'checkbox',
-          ...rowSelection
-        }}
-        columns={columns}
-        dataSource={data}
-        loading={loading}
-      />
-    </>
+    <VirtualTable
+      rowKey="id"
+      rowHeight={40}
+      scroll={{
+        y: dom.offsetHeight - 75
+      }}
+      columns={columns}
+      dataSource={data}
+      loading={loading}
+    />
   )
 }
 

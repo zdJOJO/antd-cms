@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react'
-import { Space } from 'antd';
+// import React, { ReactNode } from 'react'
+// import { Space } from 'antd';
 
 const columns = [
   {
@@ -13,15 +13,6 @@ const columns = [
   {
     title: 'Age',
     dataIndex: 'age'
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text: string, record: any): ReactNode => (
-      <Space size="middle">
-        <a>Show</a>
-      </Space>
-    )
   }
 ];
 
