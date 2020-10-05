@@ -21,6 +21,7 @@ const VirtualTable: FC<IVirtualTable<any>> = ({
   columns,
   scroll,
   rowHeight,
+  dataSource,
   ...props
 }) => {
   const [tableWidth, setTableWidth] = useState(0);
@@ -110,13 +111,14 @@ const VirtualTable: FC<IVirtualTable<any>> = ({
     >
       <Table
         {...props}
+        dataSource={dataSource}
         columns={mergedColumns}
         pagination={false}
         scroll={{
-          y: props.dataSource?.length === 0 ? undefined : scroll.y,
-          x: props.dataSource?.length === 0 ? undefined : scroll.x
+          y: dataSource?.length === 0 ? undefined : scroll.y,
+          x: dataSource?.length === 0 ? undefined : scroll.x
         }}
-        components={props.dataSource?.length === 0 ? undefined : {
+        components={dataSource?.length === 0 ? undefined : {
           body: renderVirtualList
         }}
       />
