@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
 import { LOGIN, ROOT } from '@route';
+import { PageLoading } from '@components';
 
 // import './index.less';
 
@@ -11,17 +12,15 @@ const Login = lazy(() => import(/* webpackChunkName: 'login' */ '../pages/Login'
 
 const App: React.FC<any> = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route exact path={LOGIN} component={Login} />
-            <Route path={ROOT} component={IndexPage} />
-            <Redirect from="/*" to={LOGIN} />
-          </Switch>
-        </Suspense>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Suspense fallback={<PageLoading />}>
+        <Switch>
+          <Route exact path={LOGIN} component={Login} />
+          <Route path={ROOT} component={IndexPage} />
+          <Redirect from="/*" to={LOGIN} />
+        </Switch>
+      </Suspense>
+    </BrowserRouter>
   )
 }
 

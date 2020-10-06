@@ -8,13 +8,14 @@ import {
   Footer,
   Breadcrumbs
 } from '@components';
-import { ROOT, VTABLE, SETTING } from '@route';
+import { ROOT, VTABLE, SETTING, RESOURCE } from '@route';
 import { menus } from '@route/menus';
 
 const Home = lazy(() => import(/* webpackChunkName: 'home' */'../Home'))
 const Setting = lazy(() => import(/* webpackChunkName: 'setting' */'../Setting'))
-const VTable = lazy(() => import(/* webpackChunkName: 'vatable' */'../VirtualTable'))
+import VTable from '../VirtualTable';
 import Resource from '../Resource';
+import { PageLoading } from '@components';
 
 import classes from './index.less';
 
@@ -46,12 +47,12 @@ const IndexPage = (): any => {
         <Content className={classes.content}>
           <Breadcrumbs menus={menus} />
           <div id="pageContainer" className={classes.mainContent}>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<PageLoading />}>
               <Switch>
                 <Route exact path={ROOT} component={Home} />
-                <Route exact path={VTABLE} component={VTable} />
                 <Route exact path={SETTING} component={Setting} />
-                <Resource />
+                <Route path={RESOURCE} component={Resource} />
+                <Route path={VTABLE} component={VTable} />
               </Switch>
             </Suspense>
           </div>

@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-05 12:50:44
+ * @LastEditTime: 2020-10-06 16:59:55
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React from 'react';
@@ -20,7 +20,7 @@ import {
   RESOURCE_ROLE,
   RESOURCE_FUND,
   VTABLE,
-  SETTING
+  SETTING, VTABLE_BIGDATA, VTABLE_DRAGDROP
 } from './';
 import { IMenu } from '@types';
 
@@ -30,15 +30,14 @@ export const menus: Array<IMenu> = [
     en_name: 'Nebula',
     path: ROOT,
     icon: <HomeOutlined />,
-    permKey: true,
-    children: []
+    permKey: true
   },
   {
     name: '管理',
     en_name: 'Resource Management',
     path: RESOURCE,
     icon: <ApartmentOutlined />,
-    permKey: 'menu.resource',
+    permKey: true,
     children: [
       {
         name: '角色管理',
@@ -59,7 +58,21 @@ export const menus: Array<IMenu> = [
     en_name: 'Interstellar Table',
     path: VTABLE,
     icon: <TableOutlined />,
-    permKey: true
+    permKey: true,
+    children: [
+      {
+        name: '大数据表格',
+        en_name: 'Big Data',
+        path: VTABLE_BIGDATA,
+        permKey: true
+      },
+      {
+        name: '拖拽表格',
+        en_name: 'Drag & Drop',
+        path: VTABLE_DRAGDROP,
+        permKey: true
+      }
+    ]
   },
   {
     name: '系统设置',

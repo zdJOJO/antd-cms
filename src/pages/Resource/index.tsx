@@ -1,19 +1,16 @@
-import React, { lazy, memo, FC, Suspense } from 'react'
+import React, { lazy, FC, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import { RESOURCE_ROLE, RESOURCE_FUND } from '@route';
+import { PageLoading } from '@components';
 
 const Role = lazy(() => import(/* webpackChunkName: 'role' */'./Role'));
 const Fund = lazy(() => import(/* webpackChunkName: 'fund' */'./Fund'));
 
-interface IResource {
-
-}
-
-const Resource: FC<IResource> = (props) => {
+const Resource = (): any => {
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<PageLoading />}>
         <Switch>
           <Route exact path={RESOURCE_ROLE} component={Role} />
           <Route exact path={RESOURCE_FUND} component={Fund} />
@@ -23,4 +20,4 @@ const Resource: FC<IResource> = (props) => {
   )
 }
 
-export default memo(Resource);
+export default Resource;

@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 17:34:43
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-05 14:20:38
+ * @LastEditTime: 2020-10-06 16:57:32
  * @FilePath: \antd-cms\src\route\index.ts
  */
 import { IMenu } from '@types';
@@ -13,7 +13,11 @@ export const LOGIN = '/login';
 export const RESOURCE = '/app/resource';
 export const RESOURCE_ROLE = '/app/resource/role';
 export const RESOURCE_FUND = '/app/resource/fund';
+
 export const VTABLE = '/app/vtable';
+export const VTABLE_BIGDATA = '/app/vtable/bigdata ';
+export const VTABLE_DRAGDROP = '/app/vtable/dragdarop ';
+
 export const SETTING = '/app/setting';
 
 
