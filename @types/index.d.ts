@@ -3,8 +3,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 18:45:37
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 19:18:53
- * @FilePath: \antd-cms\types\index.d.ts
+ * @LastEditTime: 2020-10-07 21:10:28
+ * @FilePath: \antd-cms\@types\index.d.ts
  */
 
 import { ReactNode } from 'react';
@@ -39,4 +39,3 @@ export interface IRoute {
     breadcrumbName: string;
   }>;
 }
-

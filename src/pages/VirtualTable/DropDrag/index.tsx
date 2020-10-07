@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-27 00:51:07
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-07 17:29:22
+ * @LastEditTime: 2020-10-07 17:46:11
  * @FilePath: \antd-cms\src\pages\VirtualTable\DropDrag\index.tsx
  */
 
@@ -131,16 +131,7 @@ const DropDrag: FC<IDropDrag> = ({ ...props }) => {
               )
             }
           >
-            {
-              columns.map((column: any, i: number) => (
-                <td
-                  style={{ width: column.width }}
-                  key={i}
-                >
-                  {rowData[column.dataIndex]}
-                </td>
-              ))
-            }
+            {columns.map((column: any, i: number) => <td key={i}>{rowData[column.dataIndex]}</td>)}
           </tr>
         )}
       </Draggable>
@@ -152,24 +143,19 @@ const DropDrag: FC<IDropDrag> = ({ ...props }) => {
     return (
       <Droppable
         droppableId={droppableId}
-      // mode="virtual"
-      // renderClone={(provided, snapshot, rubric) => {
-      //   const item = data[rubric.source.index];
-      //   return (
-      //     <div
-      //       {...provided.draggableProps}
-      //       {...provided.dragHandleProps}
-      //       ref={provided.innerRef}
-      //     >
-      //       <DraggableBodyRow
-      //         rowData={item}
-      //         key={item.id}
-      //         draggableId={item.id}
-      //         index={rubric.source.index}
-      //       />
-      //     </div>
-      //   )
-      // }}
+        mode="virtual"
+        renderClone={(provided, snapshot, rubric) => {
+          const item = data[rubric.source.index];
+          return (
+            <div
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+            >
+              Item id: {item.id}
+            </div>
+          )
+        }}
       >
         {(provided, snapshot) => (
           <tbody
@@ -227,12 +213,12 @@ const DropDrag: FC<IDropDrag> = ({ ...props }) => {
             columns={columns}
             dataSource={dataRight}
             loading={loading}
-          // components={{
-          //   body: {
-          //     wrapper: (props: any) => DraggableContainer(props, 'rightTable'),
-          //     row: DraggableBodyRow
-          //   }
-          // }}
+            components={{
+              body: {
+                wrapper: (props: any) => DraggableContainer(props, 'rightTable'),
+                row: DraggableBodyRow
+              }
+            }}
           />
         </Col>
       </Row>
