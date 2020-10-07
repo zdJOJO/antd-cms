@@ -12,7 +12,7 @@ import {
   ApartmentOutlined,
   SettingOutlined,
   TableOutlined
-} from '@utils/antdIcons';
+} from '@components/icons/antdIcons';
 
 import {
   ROOT,

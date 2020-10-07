@@ -6,7 +6,7 @@ import {
   MenuFoldOutlined,
   SettingOutlined,
   LogoutOutlined
-} from '@utils/antdIcons';
+} from '@components/icons/antdIcons';
 
 import HeaderDropdown from './HeaderDropdown';
 import { userImg } from '../../../../assets';

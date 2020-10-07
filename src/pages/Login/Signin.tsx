@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { Avatar, Form, Input, Button, Checkbox } from 'antd';
 
-import { UserOutlined, LockOutlined } from '@utils/antdIcons';
+import { UserOutlined, LockOutlined } from '@components/icons/antdIcons';
 import { userImg } from '../../../assets/';
 import classes from './index.less';
 

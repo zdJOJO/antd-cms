@@ -1,4 +1,4 @@
-import React, { FC, memo, useState, useEffect } from 'react'
+import React, { FC, memo, useState, useEffect, useRef } from 'react'
 
 import { Key } from 'antd/lib/table/interface';
 
@@ -24,22 +24,32 @@ const BigData: FC<IBigData> = ({ ...props }) => {
   const dom = document.getElementById('pageContainer') as HTMLElement;
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const unmount = useRef(false);  // 组件卸载时候，防止修改state
 
   // 获取表格数据
   const getData = async () => {
-    setLoading(true)
+    !unmount.current && setLoading(true)
     try {
       const result = await http.get('/tabledata');
-      setData([...result.list])
+      !unmount.current && setData([...result.list])
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false)
+      !unmount.current && setLoading(false)
     }
   }
+
   useEffect(() => {
     getData();
   }, [])
+
+  // 卸载组件
+  useEffect(() => {
+    return () => {
+      unmount.current = true;
+    }
+  }, [])
+
   return (
     <VirtualTable
       rowKey="id"

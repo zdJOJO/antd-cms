@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Avatar, Form, Input, Button, Checkbox } from 'antd';
 
-import { UserOutlined, LockOutlined, MailOutlined } from '@utils/antdIcons';
+import { UserOutlined, LockOutlined, MailOutlined } from '@components/icons/antdIcons';
 import classes from './index.less';
 
 interface ISignup {

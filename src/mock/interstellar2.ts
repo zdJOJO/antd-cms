@@ -13,7 +13,7 @@ import Mock from 'mockjs'
 export default Mock.mock('/tabledata2', 'get', {
   status: 0,
   message: '@FIRST',
-  'list|100': [    // 属性 list 的值是一个数组，其中含有 1 到 10000 个元素
+  'list|20': [    // 属性 list 的值是一个数组，其中含有 1 到 10000 个元素
     {
       'id|10': /[a-z][A-Z][0-9]/,
       'name': '@first @last',

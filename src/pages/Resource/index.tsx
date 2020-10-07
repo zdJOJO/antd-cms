@@ -1,4 +1,4 @@
-import React, { lazy, FC, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import { RESOURCE_ROLE, RESOURCE_FUND } from '@route';

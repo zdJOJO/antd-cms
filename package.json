@@ -42,6 +42,7 @@
     "@types/react": "^16.9.50",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "@types/react-sortable-hoc": "^0.7.1",
     "@types/react-window": "^1.8.2",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
@@ -83,12 +84,15 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "antd": "^4.6.6",
+    "array-move": "^3.0.1",
     "axios": "^0.20.0",
     "dayjs": "^1.9.1",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+    "react-sortable-hoc": "^1.11.0",
     "react-window": "^1.8.5",
     "typescript": "^4.0.3"
   }
