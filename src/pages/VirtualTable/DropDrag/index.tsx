@@ -1,10 +1,18 @@
+/*
+ * @Description: react-beautiful-dnd
+ * @Autor: zdJOJO
+ * @Date: 2020-09-27 00:51:07
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2020-10-07 17:29:22
+ * @FilePath: \antd-cms\src\pages\VirtualTable\DropDrag\index.tsx
+ */
+
 import React, { FC, memo, useState, useEffect, useRef } from 'react'
 
 import { Row, Col, Table } from 'antd';
-import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import arrayMove from 'array-move';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import columns from '../BigData/columns';
+import columns from './columns';
 import http from '@http';
 import '@mock/interstellar';
 import '@mock/interstellar2';
@@ -15,8 +23,33 @@ interface IDropDrag {
 }
 
 const rowKey = 'id';
-const SortableItem = SortableElement((props: any) => <tr {...props} />);
-const SortableBox = SortableContainer((props: any) => <tbody {...props} />);
+const getListStyle = (isDraggingOver: boolean) => ({
+  background: isDraggingOver ? 'lightblue' : 'lightgrey'
+});
+const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+
+  // change background colour if dragging
+  background: isDragging ? '#c1d6d0' : '#ffffff',
+
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+/**
+ * Moves an item from one list to another list.
+ */
+const move = (source: any, destination: any, droppableSource: any, droppableDestination: any) => {
+  const sourceClone = Array.from(source);
+  const destClone = Array.from(destination);
+  const [removed] = sourceClone.splice(droppableSource.index, 1);
+  destClone.splice(droppableDestination.index, 0, removed);
+  const result: any = {};
+  result[droppableSource.droppableId] = sourceClone;
+  result[droppableDestination.droppableId] = destClone;
+  return result;
+};
 
 const DropDrag: FC<IDropDrag> = ({ ...props }) => {
   const dom = document.getElementById('pageContainer') as HTMLElement;
@@ -48,51 +81,123 @@ const DropDrag: FC<IDropDrag> = ({ ...props }) => {
     }
   }, [])
 
-  // 拖拽开始
-  function onSortStart({ node, index, collection, isKeySorting }: any) {
-    console.log(node);
-    console.log(index);
-    console.log(collection);
-    console.log(isKeySorting);
-  }
 
-  // 拖拽结束
-  function onSortEnd({ oldIndex, newIndex }: any) {
-    if (oldIndex !== newIndex) {
-      const newData = arrayMove([...dataRight], oldIndex, newIndex).filter((el: any) => !!el);
-      console.log('Sorted items: ', newData);
-      // setDataLeft(newData);
-      setDataRight(newData)
+  function getList(droppableId: string) {
+    if (droppableId === 'leftTable') {
+      return dataLeft
+    } else {
+      return dataRight
     }
   }
 
-  const DraggableBodyRow = ({ className, style, ...restProps }: any) => {
-    // function findIndex base on Table rowKey props and should always be a right array index
-    const index = dataRight.findIndex(x => x[rowKey] === restProps['data-row-key']);
+  // 拖拽结束
+  function onDragEnd(result: any) {
+    const { source, destination } = result;
+
+    // dropped outside the list
+    if (!destination) return;
+
+    // dropped to self
+    if (source.droppableId === destination.droppableId) return;
+
+    // dropped between two tables
+    const newResult = move(
+      getList(source.droppableId),
+      getList(destination.droppableId),
+      source,
+      destination
+    );
+    console.log(newResult);
+    setDataLeft(newResult.leftTable)
+    setDataRight(newResult.rightTable)
+  }
+
+  const DraggableBodyRow = ({ draggableId, index, rowData, ...restProps }: any) => {
     return (
-      <SortableItem
-        className={className}
+      <Draggable
+        draggableId={draggableId}
         index={index}
-        {...restProps}
-      />
+      >
+        {(provided, snapshot) => (
+          <tr
+            {...restProps}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            style={
+              getItemStyle(
+                snapshot.isDragging,
+                provided.draggableProps.style
+              )
+            }
+          >
+            {
+              columns.map((column: any, i: number) => (
+                <td
+                  style={{ width: column.width }}
+                  key={i}
+                >
+                  {rowData[column.dataIndex]}
+                </td>
+              ))
+            }
+          </tr>
+        )}
+      </Draggable>
     )
   };
 
-  const DraggableContainer = (props: any) => (
-    <SortableBox
-      useDragHandle
-      helperClass="row-dragging"
-      onSortStart={onSortStart}
-      onSortEnd={onSortEnd}
-      {...props}
-    />
-  );
+  const DraggableContainer = (props: any, droppableId: string) => {
+    const data = droppableId === 'leftTable' ? [...dataLeft] : [...dataRight];
+    return (
+      <Droppable
+        droppableId={droppableId}
+      // mode="virtual"
+      // renderClone={(provided, snapshot, rubric) => {
+      //   const item = data[rubric.source.index];
+      //   return (
+      //     <div
+      //       {...provided.draggableProps}
+      //       {...provided.dragHandleProps}
+      //       ref={provided.innerRef}
+      //     >
+      //       <DraggableBodyRow
+      //         rowData={item}
+      //         key={item.id}
+      //         draggableId={item.id}
+      //         index={rubric.source.index}
+      //       />
+      //     </div>
+      //   )
+      // }}
+      >
+        {(provided, snapshot) => (
+          <tbody
+            {...props}
+            ref={provided.innerRef}
+            style={getListStyle(snapshot.isDraggingOver)}
+          >
+            {data.map((item, index) => (
+              <DraggableBodyRow
+                rowData={item}
+                key={item.id}
+                draggableId={item.id}
+                index={index}
+              />
+            ))}
+            {provided.placeholder}
+          </tbody>
+        )}
+      </Droppable>
+    )
+  };
 
   return (
-    <>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Row>
-        <Col span={15}>
+        <Col span={12}>
           <Table
+            className="dragTable"
             size="small"
             pagination={false}
             rowKey={rowKey}
@@ -102,16 +207,17 @@ const DropDrag: FC<IDropDrag> = ({ ...props }) => {
             columns={columns}
             dataSource={dataLeft}
             loading={loading}
-          // components={{
-          //   body: {
-          //     wrapper: DraggableContainer,
-          //     row: DraggableBodyRow
-          //   }
-          // }}
+            components={{
+              body: {
+                wrapper: (props: any) => DraggableContainer(props, 'leftTable'),
+                row: DraggableBodyRow
+              }
+            }}
           />
         </Col>
-        <Col span={8} offset={1}>
+        <Col span={11} offset={1}>
           <Table
+            className="dragTable"
             size="small"
             pagination={false}
             rowKey={rowKey}
@@ -121,16 +227,16 @@ const DropDrag: FC<IDropDrag> = ({ ...props }) => {
             columns={columns}
             dataSource={dataRight}
             loading={loading}
-            components={{
-              body: {
-                wrapper: DraggableContainer,
-                row: DraggableBodyRow
-              }
-            }}
+          // components={{
+          //   body: {
+          //     wrapper: (props: any) => DraggableContainer(props, 'rightTable'),
+          //     row: DraggableBodyRow
+          //   }
+          // }}
           />
         </Col>
       </Row>
-    </>
+    </DragDropContext>
 
   )
 }
