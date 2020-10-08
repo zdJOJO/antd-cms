@@ -7,7 +7,6 @@
   font-size: 14px;
   width: 100%;
   height: inherit;
-  // overflow: scroll;
 
   .tableSpin {
     height: inherit;
@@ -61,7 +60,7 @@
     background: #fafafa;
 
     .tableHead {
-      display: inline-flex;
+      display: block;
     }
   }
 
@@ -71,13 +70,11 @@
 
   .tableBodyContainer {
     overflow-x: scroll;
-    overflow-y: scroll;
-    height: inherit;
+    overflow-y: hidden;
 
     .tableBody {
       .tableRow {
         background-color: #fff;
-        display: inline-flex;
         border-bottom: 1px solid #f0f0f0;
         transition: background .3s ease;
       }
@@ -86,6 +83,14 @@
         .tableTdCell {
           background: #d7ece6;
         }
+      }
+
+      .tableRow::after {
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
       }
     }
   }
@@ -100,20 +105,20 @@
     padding: @default;
     overflow-wrap: break-word;
     transition: background .3s ease;
-    line-height: 32px;
+    line-height: 31px;
 
     &.tableThCell {
       background-color: #fafafa;
       font-weight: 500;
 
       &.leftCellFixed {
-        position: sticky;
+        // position: sticky;
         left: 0;
       }
     }
 
     &.leftCellFixed {
-      position: sticky;
+      // position: sticky;
       left: 0;
     }
   }
@@ -124,31 +129,31 @@
     clear: both;
   }
 
-  .leftCellFixed::after {
-    -webkit-box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, .15);
-    box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, .15);
-    position: absolute;
-    top: 0;
-    right: -30px;
-    bottom: -1px;
-    width: 30px;
-    -webkit-transition: -webkit-box-shadow .3s;
-    transition: -webkit-box-shadow .3s;
-    transition-property: box-shadow, -webkit-box-shadow;
-    transition-duration: 0.3s, 0.3s;
-    transition-timing-function: ease, ease;
-    transition-delay: 0s, 0s;
-    transition: box-shadow .3s;
-    transition-property: box-shadow, -webkit-box-shadow;
-    transition-duration: 0.3s, 0.3s;
-    transition-timing-function: ease, ease;
-    transition-delay: 0s, 0s;
-    transition: box-shadow .3s, -webkit-box-shadow .3s;
-    transition-property: box-shadow, -webkit-box-shadow;
-    transition-duration: 0.3s, 0.3s;
-    transition-timing-function: ease, ease;
-    transition-delay: 0s, 0s;
-    content: "";
-    pointer-events: none;
-  }
+  // .leftCellFixed::after {
+  //   -webkit-box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, .15);
+  //   box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, .15);
+  //   position: absolute;
+  //   top: 0;
+  //   right: -30px;
+  //   bottom: -1px;
+  //   width: 30px;
+  //   -webkit-transition: -webkit-box-shadow .3s;
+  //   transition: -webkit-box-shadow .3s;
+  //   transition-property: box-shadow, -webkit-box-shadow;
+  //   transition-duration: 0.3s, 0.3s;
+  //   transition-timing-function: ease, ease;
+  //   transition-delay: 0s, 0s;
+  //   transition: box-shadow .3s;
+  //   transition-property: box-shadow, -webkit-box-shadow;
+  //   transition-duration: 0.3s, 0.3s;
+  //   transition-timing-function: ease, ease;
+  //   transition-delay: 0s, 0s;
+  //   transition: box-shadow .3s, -webkit-box-shadow .3s;
+  //   transition-property: box-shadow, -webkit-box-shadow;
+  //   transition-duration: 0.3s, 0.3s;
+  //   transition-timing-function: ease, ease;
+  //   transition-delay: 0s, 0s;
+  //   content: "";
+  //   pointer-events: none;
+  // }
 }

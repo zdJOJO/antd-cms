@@ -1,28 +1,27 @@
 /*
- * @Description: 基于antd样式的自定义表格，此表格具有 虚拟表格、 单元格编辑、 表格拖拽等功能
+ * @Description: 自定义表格，此表格具有 虚拟表格、 单元格编辑、 表格拖拽等功能
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:25:24
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 15:10:34
+ * @LastEditTime: 2020-10-08 17:35:40
  * @FilePath: \antd-cms\src\components\CustomTable\index.tsx
  */
 
 import React, { FC, useRef, useEffect, useState } from 'react';
-import { FixedSizeList as List } from 'react-window';
 import { Spin } from 'antd';
+import { FixedSizeList as List } from 'react-window';
 
 import { IColumn, ICustomTable } from './index.d';
-// import Row from './Row';
 import EditRow from './EditRow';
 import Cell from './Cell';
 
 import styles from './index.less';
 
-const defaultWidth = 230;
-
-// const getTotalWidth = (columns: IColumn[]): (number | undefined) => {
-//   return columns.map(i => i.width || defaultWidth).reduce((x, y) => x + y)
-// }
+const defaultWidth = 200;
+// 获取宽度
+const getTotalWidth = (columns: IColumn[]): (number | undefined) => {
+  return columns.map(i => i.width || defaultWidth).reduce((x, y) => x + y)
+}
 
 const CustomTable: FC<ICustomTable> = ({
   loading,
@@ -30,6 +29,7 @@ const CustomTable: FC<ICustomTable> = ({
   dataSource,
   rowKey,
   size,
+  virtualListStyle,
   handleSave
 }) => {
 
@@ -60,6 +60,12 @@ const CustomTable: FC<ICustomTable> = ({
     classStr = `${classStr} ${styles.tableContainerSmall}`
   }
 
+  let width: number = virtualListStyle.width > (getTotalWidth(columns) as number) ? virtualListStyle.width : (getTotalWidth(columns) as number);
+  width = width + 17; // 加上右侧滚动条的宽度
+  let height = virtualListStyle.height;
+  if (!!tableHeadRef.current) {
+    height = virtualListStyle.height - (tableHeadRef.current as HTMLDivElement).clientHeight - 17 - 20;
+  }
   return (
     <div className={styles.tableWrapper}>
       <div className={styles.tableSpin}>
@@ -71,14 +77,11 @@ const CustomTable: FC<ICustomTable> = ({
           </div>
         }
 
-        <div
-          className={classStr}
-          style={{ height: 'calc(100% - 16px)' }}
-        >
+        <div className={classStr}>
 
           {/* table head */}
           <div ref={tableHeadRef} className={styles.tableHeadContainer}>
-            <div className={styles.tableHead}>
+            <div className={styles.tableHead} style={{ width: width }} >
               {
                 columns.map((column: IColumn, index: number) => (
                   <Cell
@@ -97,28 +100,40 @@ const CustomTable: FC<ICustomTable> = ({
           <div
             ref={tableBodyRef}
             className={styles.tableBodyContainer}
-            style={{ height: 'calc(100% - 22px)' }}
           >
             <div className={styles.tableBody}>
-              {
-                dataSource.map((row: any, index: number) => (
-                  <EditRow
-                    key={row[rowKey]}
-                    rowData={row}
-                    index={index}
-                    columns={columns}
-                    cellWidth={defaultWidth}
-                    isLeft={isLeft}
-                    type="td"
-                    handleSave={handleSave}
-                  />
-                ))
+              {!!virtualListStyle &&
+                <List
+                  height={height}
+                  width={width}
+                  itemCount={virtualListStyle.itemCount}
+                  itemSize={virtualListStyle.itemSize}
+                >
+                  {
+                    ({ index, style }: any) => {
+                      const record = dataSource[index];
+                      return (
+                        <EditRow
+                          style={style}
+                          key={record[rowKey]}
+                          rowData={record}
+                          index={index}
+                          columns={columns}
+                          cellWidth={defaultWidth}
+                          isLeft={isLeft}
+                          type="td"
+                          handleSave={handleSave}
+                        />
+                      )
+                    }
+                  }
+                </List>
               }
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

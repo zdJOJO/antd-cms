@@ -20,7 +20,8 @@ const EditRow: FC<IEditRow> = ({
   index,
   cellWidth,
   isLeft,
-  handleSave
+  handleSave,
+  ...restprops
 }) => {
 
   const renderContent = (column: IColumn) => {
@@ -32,7 +33,7 @@ const EditRow: FC<IEditRow> = ({
   const [form] = Form.useForm();
 
   return (
-    <div className={styles.tableRow}>
+    <div {...restprops} className={styles.tableRow}>
       <Form form={form} component={false}>
         <EditableContext.Provider value={form}>
           {

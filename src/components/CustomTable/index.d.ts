@@ -4,7 +4,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:36:12
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 14:39:44
+ * @LastEditTime: 2020-10-08 17:31:43
  * @FilePath: \antd-cms\src\components\CustomTable\index.d.ts
  */
 
@@ -26,7 +26,7 @@ export interface ICell extends HTMLAttributes<HTMLDivElement> {
   renderContent?: () => string | ReactNode
 }
 
-export interface IRow {
+export interface IRow extends HTMLAttributes<HTMLDivElement> {
   type: 'th' | 'td'
   columns: Array<IColumn>
   rowData: any,
@@ -45,6 +45,12 @@ export interface ICustomTable extends HTMLAttributes<HTMLDivElement> {
     y?: number | string
   }
   size?: 'default' | 'small'
+  virtualListStyle: {
+    height: number
+    width: number
+    itemCount: number
+    itemSize: number
+  }
   handleSave: (values: any) => void
 }
 
