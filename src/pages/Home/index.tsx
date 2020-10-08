@@ -18,9 +18,7 @@ function Home(): ReactNode {
 
   // 删除行
   const handleDelete = (record: any, _index: number) => {
-    const temp = [...dataSource]
-    temp.splice(_index, 1)
-    setDataSource(temp)
+    setDataSource(dataSource => dataSource.filter(item => item.id !== record.id))
   }
 
   // 编辑保存
