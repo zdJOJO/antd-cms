@@ -3,12 +3,12 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:25:24
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 17:35:40
+ * @LastEditTime: 2020-10-08 18:11:24
  * @FilePath: \antd-cms\src\components\CustomTable\index.tsx
  */
 
 import React, { FC, useRef, useEffect, useState } from 'react';
-import { Spin } from 'antd';
+import { Spin, Empty } from 'antd';
 import { FixedSizeList as List } from 'react-window';
 
 import { IColumn, ICustomTable } from './index.d';
@@ -66,6 +66,7 @@ const CustomTable: FC<ICustomTable> = ({
   if (!!tableHeadRef.current) {
     height = virtualListStyle.height - (tableHeadRef.current as HTMLDivElement).clientHeight - 17 - 20;
   }
+  const isEmpty = dataSource.length === 0;
   return (
     <div className={styles.tableWrapper}>
       <div className={styles.tableSpin}>
@@ -81,17 +82,26 @@ const CustomTable: FC<ICustomTable> = ({
 
           {/* table head */}
           <div ref={tableHeadRef} className={styles.tableHeadContainer}>
-            <div className={styles.tableHead} style={{ width: width }} >
+            <div
+              className={styles.tableHead}
+              style={isEmpty ? { width: 'auto', display: 'flex' } : { width }}
+            >
               {
-                columns.map((column: IColumn, index: number) => (
-                  <Cell
-                    cellClassName={(column.fixed && index === 0 && !isLeft) ? styles.leftCellFixed : undefined}
-                    style={{ width: column.width || defaultWidth }}
-                    key={`${column.title}-${index}`}
-                    renderContent={() => column.editable ? <span><i style={{ color: 'red' }}>*</i>{column.title}</span> : column.title}
-                    type="th"
-                  />
-                ))
+                columns.map((column: IColumn, index: number) => {
+                  let thCellstyle: any = { width: column.width || defaultWidth };
+                  if (isEmpty) {
+                    thCellstyle = { flex: 1 }
+                  }
+                  return (
+                    <Cell
+                      cellClassName={(column.fixed && index === 0 && !isLeft) ? styles.leftCellFixed : undefined}
+                      style={thCellstyle}
+                      key={`${column.title}-${index}`}
+                      renderContent={() => column.editable ? <span><i style={{ color: 'red' }}>*</i>{column.title}</span> : column.title}
+                      type="th"
+                    />
+                  )
+                })
               }
             </div>
           </div>
@@ -102,8 +112,9 @@ const CustomTable: FC<ICustomTable> = ({
             className={styles.tableBodyContainer}
           >
             <div className={styles.tableBody}>
-              {!!virtualListStyle &&
-                <List
+              {/* 有数据 */}
+              {!!virtualListStyle && !isEmpty &&
+                < List
                   height={height}
                   width={width}
                   itemCount={virtualListStyle.itemCount}
@@ -128,6 +139,11 @@ const CustomTable: FC<ICustomTable> = ({
                     }
                   }
                 </List>
+              }
+
+              {/* 无数据 */}
+              {isEmpty &&
+                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
               }
             </div>
           </div>

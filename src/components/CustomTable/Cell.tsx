@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
+import { isEqual } from 'lodash';
 
 import { ICell } from './index.d';
 import styles from './index.less';
@@ -21,4 +22,8 @@ const Cell: FC<ICell> = ({
   )
 }
 
-export default Cell
+function arePropsEqual(prevProps: any, nextProps: any) {
+  return isEqual(prevProps, nextProps)
+}
+
+export default memo(Cell, arePropsEqual)
