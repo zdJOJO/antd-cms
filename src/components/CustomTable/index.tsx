@@ -3,15 +3,17 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:25:24
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 13:35:50
+ * @LastEditTime: 2020-10-08 15:10:34
  * @FilePath: \antd-cms\src\components\CustomTable\index.tsx
  */
 
 import React, { FC, useRef, useEffect, useState } from 'react';
+import { FixedSizeList as List } from 'react-window';
 import { Spin } from 'antd';
 
 import { IColumn, ICustomTable } from './index.d';
-import Row from './Row';
+// import Row from './Row';
+import EditRow from './EditRow';
 import Cell from './Cell';
 
 import styles from './index.less';
@@ -27,7 +29,8 @@ const CustomTable: FC<ICustomTable> = ({
   columns,
   dataSource,
   rowKey,
-  size
+  size,
+  handleSave
 }) => {
 
   const [isLeft, setIsLeft] = useState<boolean>(true);
@@ -82,7 +85,7 @@ const CustomTable: FC<ICustomTable> = ({
                     cellClassName={(column.fixed && index === 0 && !isLeft) ? styles.leftCellFixed : undefined}
                     style={{ width: column.width || defaultWidth }}
                     key={`${column.title}-${index}`}
-                    renderContent={() => column.title}
+                    renderContent={() => column.editable ? <span><i style={{ color: 'red' }}>*</i>{column.title}</span> : column.title}
                     type="th"
                   />
                 ))
@@ -99,7 +102,7 @@ const CustomTable: FC<ICustomTable> = ({
             <div className={styles.tableBody}>
               {
                 dataSource.map((row: any, index: number) => (
-                  <Row
+                  <EditRow
                     key={row[rowKey]}
                     rowData={row}
                     index={index}
@@ -107,6 +110,7 @@ const CustomTable: FC<ICustomTable> = ({
                     cellWidth={defaultWidth}
                     isLeft={isLeft}
                     type="td"
+                    handleSave={handleSave}
                   />
                 ))
               }

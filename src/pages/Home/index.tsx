@@ -22,6 +22,18 @@ function Home(): ReactNode {
     setDataSource(temp)
   }
 
+  // 编辑保存
+  const handleSave = (values: any) => {
+    const temp = [...dataSource];
+    temp.some((rowData: any, _index: number) => {
+      if (rowData.id === values.id) {
+        temp[_index] = values;
+        return true
+      }
+    })
+    setDataSource(temp);
+  }
+
   const tableColumns = [
     ...columns,
     {
@@ -48,6 +60,7 @@ function Home(): ReactNode {
         columns={tableColumns}
         loading={loading}
         dataSource={dataSource}
+        handleSave={handleSave}
       />
     </div>
   )

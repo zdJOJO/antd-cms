@@ -11,29 +11,26 @@ const columns: any[] = [
   {
     title: 'Galaxy',
     dataIndex: 'galaxy',
-    fixed: true
-
+    fixed: true,
+    editable: true
   },
   {
     title: 'Age',
-    dataIndex: 'age'
-
+    dataIndex: 'age',
+    editable: true
   },
 
   {
     title: 'Year',
     dataIndex: 'year'
-
   },
   {
     title: 'Month',
     dataIndex: 'month'
-
   },
   {
     title: 'Day',
     dataIndex: 'day'
-
   },
   {
     title: 'Province',

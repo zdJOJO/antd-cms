@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-05 12:22:49
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-07 21:04:49
+ * @LastEditTime: 2020-10-08 15:09:41
  * @FilePath: \antd-cms\src\mock\home.ts
  */
 // 使用 Mock
@@ -13,7 +13,7 @@ import Mock, { Random } from 'mockjs'
 export default Mock.mock('/home', 'get', {
   status: 0,
   message: '@FIRST',
-  'list|100': [    // 属性 list 的值是一个数组，其中含有 1 到 10000 个元素
+  'list|200': [    // 属性 list 的值是一个数组，其中含有 1 到 10000 个元素
     {
       'id|10': /[a-z][A-Z][0-9]/,
       'name': '@first @last',

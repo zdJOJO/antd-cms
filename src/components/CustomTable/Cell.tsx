@@ -10,13 +10,13 @@ const Cell: FC<ICell> = ({
   cellClassName,
   ...restProps
 }) => {
-  const classStr = type === 'th' ? `${styles.tableTdCell} ${styles.tableThCell}` : styles.tableTdCell
+  const classStr = type === 'th' ? `${styles.tableTdCell} ${styles.tableThCell}` : styles.tableTdCell;
   return (
     <div
       {...restProps}
       className={cellClassName ? `${classStr} ${cellClassName}` : classStr}
     >
-      {renderContent()}
+      {renderContent && renderContent()}
     </div>
   )
 }

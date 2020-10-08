@@ -15,6 +15,14 @@ const Row: FC<IRow> = ({
   cellWidth,
   isLeft
 }) => {
+
+  const renderContent = (column: IColumn) => {
+    if (!!column.render) {
+      return column.render(rowData, index)
+    }
+    return rowData[column.dataIndex]
+  }
+
   return (
     <div className={styles.tableRow}>
       {
@@ -24,7 +32,7 @@ const Row: FC<IRow> = ({
               cellClassName={!isLeft && column.fixed && _index === 0 ? styles.leftCellFixed : undefined}
               style={{ width: column.width || cellWidth }}
               key={`${column.title}-${_index}`}
-              renderContent={() => !!column.render ? column.render(rowData, index) : rowData[column.dataIndex]}
+              renderContent={() => renderContent(column)}
               type={type}
             />
           )

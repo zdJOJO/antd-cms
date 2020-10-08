@@ -4,7 +4,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:36:12
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 13:34:17
+ * @LastEditTime: 2020-10-08 14:39:44
  * @FilePath: \antd-cms\src\components\CustomTable\index.d.ts
  */
 
@@ -23,7 +23,7 @@ export interface IColumn {
 export interface ICell extends HTMLAttributes<HTMLDivElement> {
   cellClassName?: string | undefined
   type: 'th' | 'td'
-  renderContent: () => string | ReactNode
+  renderContent?: () => string | ReactNode
 }
 
 export interface IRow {
@@ -45,6 +45,7 @@ export interface ICustomTable extends HTMLAttributes<HTMLDivElement> {
     y?: number | string
   }
   size?: 'default' | 'small'
+  handleSave: (values: any) => void
 }
 
 export const Cell: React.ForwardRefExoticComponent<ICell & RefAttributes<HTMLDivElement>>;
