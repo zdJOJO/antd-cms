@@ -1,5 +1,5 @@
-import usetableData from './usetableData';
+import useTableData from './useTableData';
 
 export {
-  usetableData
+  useTableData
 }

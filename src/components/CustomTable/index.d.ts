@@ -4,11 +4,11 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:36:12
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 00:10:16
+ * @LastEditTime: 2020-10-08 13:34:17
  * @FilePath: \antd-cms\src\components\CustomTable\index.d.ts
  */
 
-import { ReactNode, RefAttributes, HTMLAttributes } from 'react';
+import React, { ReactNode, RefAttributes, HTMLAttributes } from 'react';
 
 export interface IColumn {
   title: string
@@ -30,6 +30,7 @@ export interface IRow {
   type: 'th' | 'td'
   columns: Array<IColumn>
   rowData: any,
+  index: number
   cellWidth: number
   isLeft?: boolean
 }

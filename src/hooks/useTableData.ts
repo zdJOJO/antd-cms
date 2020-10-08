@@ -1,18 +1,20 @@
+/* eslint-disable no-unused-vars */
 /*
  * @Description: file content
  * @Autor: zdJOJO
- * @Date: 2020-10-05 13:15:23
+ * @Date: 2020-10-08 13:11:38
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-05 18:27:46
- * @FilePath: \antd-cms\src\hooks\usetableData.ts
+ * @LastEditTime: 2020-10-08 13:38:48
+ * @FilePath: \antd-cms\src\hooks\useTableData.ts
  */
-import { useState } from 'react'
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react'
 import http from '@http';
 
-// 纯展示
-function useTableData(url: string): [any[], boolean, any, () => void] {
+function useTableData(url: string): [any[], boolean, Dispatch<SetStateAction<any[]>>] {
+  const unmount = useRef(false);
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState(false)
   function init() {
     setData([])
@@ -21,17 +23,26 @@ function useTableData(url: string): [any[], boolean, any, () => void] {
   }
   async function load() {
     init()
-    setLoading(true);
+    !unmount.current && setLoading(true);
     try {
       const result = await http.get(url);
-      setData(result.list)
+      !unmount.current && setData(result.list)
     } catch (error) {
-      setError(true)
+      !unmount.current && setError(true)
     } finally {
-      setLoading(false)
+      !unmount.current && setLoading(false)
     }
   }
-  return [data, loading, error, load]
+  useEffect(() => {
+    load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url])
+  useEffect(() => {
+    return () => {
+      unmount.current = true
+    }
+  }, [])
+  return [data, loading, setData]
 }
 
 export default useTableData

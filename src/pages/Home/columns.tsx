@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { Tag } from 'antd';
 
 const columns: any[] = [
@@ -6,7 +6,7 @@ const columns: any[] = [
     title: 'Name',
     dataIndex: 'name',
     fixed: true,
-    render: (record: any, index: number) => <Tag color="volcano">{record.name}</Tag>
+    render: (record: { name: React.ReactNode; }, _index: number): ReactNode => <Tag color="volcano">{_index} : {record.name}</Tag>
   },
   {
     title: 'Galaxy',
@@ -37,14 +37,11 @@ const columns: any[] = [
   },
   {
     title: 'Province',
-    dataIndex: 'province',
-    fixed: true
+    dataIndex: 'province'
   },
   {
     title: 'City',
-    dataIndex: 'city',
-    fixed: true
-
+    dataIndex: 'city'
   }
 ];
 

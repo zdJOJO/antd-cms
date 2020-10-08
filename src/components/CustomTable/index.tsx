@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:25:24
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 01:18:27
+ * @LastEditTime: 2020-10-08 13:35:50
  * @FilePath: \antd-cms\src\components\CustomTable\index.tsx
  */
 
@@ -18,36 +18,37 @@ import styles from './index.less';
 
 const defaultWidth = 230;
 
-const getTotalWidth = (columns: IColumn[]): (number | undefined) => {
-  return columns.map(i => i.width || defaultWidth).reduce((x, y) => x + y)
-}
+// const getTotalWidth = (columns: IColumn[]): (number | undefined) => {
+//   return columns.map(i => i.width || defaultWidth).reduce((x, y) => x + y)
+// }
 
 const CustomTable: FC<ICustomTable> = ({
   loading,
   columns,
   dataSource,
   rowKey,
-  scroll,
   size
 }) => {
 
   const [isLeft, setIsLeft] = useState<boolean>(true);
-  const [isTop, setIsTop] = useState<boolean>(true);
 
   const tableBodyRef = useRef<HTMLDivElement>(null);
   const tableHeadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
+    function clean() {
+      (tableBodyRef.current as HTMLDivElement).removeEventListener('scroll', scrollHander)
+    }
+
     const scrollHander = (event: any) => {
       const scrollLeft = event.target.scrollLeft;
-      const scrollTop = event.target.scrollTop;
       (tableHeadRef.current as HTMLDivElement).scrollLeft = scrollLeft;
       setIsLeft(scrollLeft === 0)
-      setIsTop(scrollTop === 0)
     }
     (tableBodyRef.current as HTMLDivElement).addEventListener('scroll', scrollHander)
     return () => {
-      (tableBodyRef.current as HTMLDivElement).removeEventListener('scroll', scrollHander)
+      clean()
     }
   })
 
@@ -69,7 +70,7 @@ const CustomTable: FC<ICustomTable> = ({
 
         <div
           className={classStr}
-          style={{ height: 'calc(100% - 22px)' }}
+          style={{ height: 'calc(100% - 16px)' }}
         >
 
           {/* table head */}
@@ -101,6 +102,7 @@ const CustomTable: FC<ICustomTable> = ({
                   <Row
                     key={row[rowKey]}
                     rowData={row}
+                    index={index}
                     columns={columns}
                     cellWidth={defaultWidth}
                     isLeft={isLeft}

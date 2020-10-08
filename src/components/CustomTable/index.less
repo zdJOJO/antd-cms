@@ -57,6 +57,8 @@
 
   .tableHeadContainer {
     overflow-x: scroll;
+    padding-right: 17px;
+    background: #fafafa;
 
     .tableHead {
       display: inline-flex;
@@ -72,18 +74,20 @@
     overflow-y: scroll;
     height: inherit;
 
-    .tableBody {}
-  }
+    .tableBody {
+      .tableRow {
+        background-color: #fff;
+        display: inline-flex;
+        border-bottom: 1px solid #f0f0f0;
+        transition: background .3s ease;
+      }
 
-  .tableRow {
-    display: inline-flex;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background .3s ease;
-  }
-
-  .tableRow:hover {
-    background-color: #c1d6d0;
-    opacity: 0.8;
+      .tableRow:hover {
+        .tableTdCell {
+          background: #c1d6d0 !important;
+        }
+      }
+    }
   }
 
   .tableTdCell {

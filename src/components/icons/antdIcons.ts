@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-01 18:58:19
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-06 20:04:32
+ * @LastEditTime: 2020-10-08 12:32:52
  * @FilePath: \antd-cms\src\components\icons\antdIcons.ts
  */
 export { default as MenuUnfoldOutlined } from '@ant-design/icons/MenuUnfoldOutlined';
@@ -16,5 +16,4 @@ export { default as TableOutlined } from '@ant-design/icons/TableOutlined';
 export { default as LogoutOutlined } from '@ant-design/icons/LogoutOutlined';
 export { default as LockOutlined } from '@ant-design/icons/LockOutlined';
 export { default as MailOutlined } from '@ant-design/icons/MailOutlined';
-
-
+export { default as DeleteOutlined } from '@ant-design/icons/DeleteOutlined';

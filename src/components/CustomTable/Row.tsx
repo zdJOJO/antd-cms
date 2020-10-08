@@ -1,5 +1,5 @@
-import React, { FC, memo, ReactNode } from 'react';
-import _ from 'lodash';
+import React, { FC, memo } from 'react';
+import { isEqual } from 'lodash';
 
 import { IRow, IColumn } from './index.d';
 import styles from './index.less';
@@ -10,6 +10,7 @@ import Cell from './Cell';
 const Row: FC<IRow> = ({
   columns,
   rowData,
+  index,
   type,
   cellWidth,
   isLeft
@@ -17,12 +18,12 @@ const Row: FC<IRow> = ({
   return (
     <div className={styles.tableRow}>
       {
-        columns.map((column: IColumn, index: number) => {
+        columns.map((column: IColumn, _index: number) => {
           return (
             <Cell
-              cellClassName={!isLeft && column.fixed && index === 0 ? styles.leftCellFixed : undefined}
+              cellClassName={!isLeft && column.fixed && _index === 0 ? styles.leftCellFixed : undefined}
               style={{ width: column.width || cellWidth }}
-              key={`${column.title}-${index}`}
+              key={`${column.title}-${_index}`}
               renderContent={() => !!column.render ? column.render(rowData, index) : rowData[column.dataIndex]}
               type={type}
             />
@@ -34,7 +35,7 @@ const Row: FC<IRow> = ({
 }
 
 function arePropsEqual(prevProps: any, nextProps: any) {
-  return _.isEqual(prevProps, nextProps)
+  return isEqual(prevProps, nextProps)
 }
 
 export default memo(Row, arePropsEqual)

@@ -1,25 +1,47 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState, useRef } from 'react'
 
 import { Popconfirm } from 'antd';
 
 import { CustomTable } from '@components';
 import { DeleteOutlined } from '@components/icons/antdIcons';
 import columns from './columns';
-import { useTableData } from '@hooks';
+import http from '@http';
 import '@mock/home';
 
 import classes from './index.less';
 
 
 function Home(): ReactNode {
+  const unmount = useRef(false);
+  const [dataSource, setDataSource] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const [dataSource, loading, setDataSource] = useTableData('/home')
+  // 获取表格数据
+  const getDatas = async () => {
+    !unmount.current && setLoading(true);
+    try {
+      const results = await http.get('/home')
+      !unmount.current && setDataSource(results.list);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      !unmount.current && setLoading(false)
+    }
+  }
+  useEffect(() => {
+    getDatas();
+  }, [])
+  useEffect(() => {
+    return () => {
+      unmount.current = true
+    }
+  }, [])
 
   // 删除行
   const handleDelete = (record: any, _index: number) => {
-    const temp = [...dataSource]
-    temp.splice(_index, 1)
-    setDataSource(temp)
+    console.log(record.name);
+    console.log(_index);
+    console.log(dataSource);
   }
 
   const tableColumns = [
