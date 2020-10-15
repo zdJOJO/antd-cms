@@ -4,8 +4,8 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:36:12
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 20:39:28
- * @FilePath: \antd-cms\src\components\CustomTable\index.d.ts
+ * @LastEditTime: 2020-10-08 22:18:27
+ * @FilePath: \antd-cms\src\components\DndTable\index.d.ts
  */
 
 import React, { ReactNode, RefAttributes, HTMLAttributes } from 'react';
@@ -51,11 +51,18 @@ export interface ICustomTable extends HTMLAttributes<HTMLDivElement> {
   size?: 'default' | 'small'
   virtualListStyle: {
     height: number
-    width: number
+    width: number | string
     itemCount: number
     itemSize: number
   }
   handleSave: (values: any) => void
+}
+
+export interface IRowData {
+  id: string
+  name: string
+  galaxy: string
+  age: number
 }
 
 export const Cell: React.ForwardRefExoticComponent<ICell & RefAttributes<HTMLElement>>;

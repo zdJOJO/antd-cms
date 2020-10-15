@@ -1,0 +1,66 @@
+:global {
+  // .virtual-table-container::-webkit-scrollbar {
+  //   width: 5px;
+  // }
+
+  .virtual-table-container {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    float: right;
+
+    &.virtual-table-container::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .ReactVirtualized__Table__headerRow {
+
+      &.virtual-row {
+        border-bottom: 1px solid #f0f0f0;
+        background: #fafafa;
+      }
+
+      .virtual-headCell {
+        position: relative;
+        overflow-wrap: break-word;
+        color: rgba(0, 0, 0, .85);
+        font-weight: 500;
+        text-align: left;
+        background: #fafafa;
+        -webkit-transition: background .3s ease;
+        transition: background .3s ease;
+        padding: 8px 2.3em 8px 8px;
+        display: flex;
+      }
+    }
+
+    .virtual-tablebody {
+      .virtual-row {
+        border-bottom: 1px solid #f0f0f0;
+        transition: background .3s;
+        -webkit-transition: background .3s;
+
+        .virtual-cell {
+          padding: 8px;
+        }
+      }
+
+      .virtual-row:hover {
+        background-color: #e6f7ff;
+      }
+
+      .ant-form-item {
+        margin-bottom: 0;
+      }
+
+      .ant-form-item-has-error .ant-form-item-explain {
+        position: absolute !important;
+        top: 26px;
+        font-size: 12px;
+      }
+
+    }
+  }
+
+}

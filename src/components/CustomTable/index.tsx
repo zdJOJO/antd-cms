@@ -3,11 +3,11 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-07 18:25:24
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-08 18:32:58
+ * @LastEditTime: 2020-10-08 19:34:15
  * @FilePath: \antd-cms\src\components\CustomTable\index.tsx
  */
 
-import React, { FC, useRef, useEffect, useState } from 'react';
+import React, { FC, useRef, useEffect, useState, memo } from 'react';
 import { Spin, Empty } from 'antd';
 import { FixedSizeList as List } from 'react-window';
 
