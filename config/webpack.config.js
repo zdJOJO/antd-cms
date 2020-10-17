@@ -66,7 +66,7 @@ module.exports = {
   },
 
   // 生产模式下关闭map文件
-  devtool: isPro ? 'none' : 'source-map',
+  devtool: isPro ? false : 'source-map',
 
   devServer: {
     host: '127.0.0.1',

@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual';
 
 import { ICell } from './index.d';
 import styles from './index.less';

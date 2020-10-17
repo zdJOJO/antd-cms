@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual';
 import { Form } from 'antd';
 
 import { IEditRow, IColumn } from './index.d';
