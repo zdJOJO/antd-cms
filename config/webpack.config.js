@@ -170,9 +170,9 @@ module.exports = {
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-          minChunks: 1, //被不同entry引用次数(import),1次的话没必要提取
+          // name: 'vendors',
+          // chunks: 'all',
+          // minChunks: 2, //被不同entry引用次数(import),1次的话没必要提取
           priority: -10
         },
         commons: {
