@@ -1,4 +1,4 @@
-import React, { lazy, useState, Suspense } from 'react'
+import React, { lazy, useState, Suspense, ReactElement } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
@@ -11,8 +11,8 @@ import {
 import { ROOT, VTABLE, SETTING, RESOURCE } from '@route';
 import { menus } from '@route/menus';
 
-const Home = lazy(() => import(/* webpackChunkName: 'home' */'../Home'))
-const Setting = lazy(() => import(/* webpackChunkName: 'setting' */'../Setting'))
+const Home = lazy((): Promise<any> => import(/* webpackChunkName: 'home' */'../Home'));
+const Setting = lazy((): Promise<any> => import(/* webpackChunkName: 'setting' */'../Setting'));
 import VTable from '../VirtualTable';
 import Resource from '../Resource';
 import { PageLoading } from '@components';
@@ -22,7 +22,7 @@ import classes from './index.less';
 
 const { Content } = Layout
 
-const IndexPage = (): any => {
+const IndexPage = (): ReactElement => {
 
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
@@ -50,7 +50,7 @@ const IndexPage = (): any => {
             <Suspense fallback={<PageLoading />}>
               <Switch>
                 <Route exact path={ROOT} component={Home} />
-                <Route exact path={SETTING} component={Setting} />
+                <Route path={SETTING} component={Setting} />
                 <Route path={RESOURCE} component={Resource} />
                 <Route path={VTABLE} component={VTable} />
               </Switch>

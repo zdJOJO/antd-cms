@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 23:36:08
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-06 16:59:55
+ * @LastEditTime: 2020-10-17 12:37:34
  * @FilePath: \antd-cms\src\route\menus.tsx
  */
 import React from 'react';
@@ -20,7 +20,7 @@ import {
   RESOURCE_ROLE,
   RESOURCE_FUND,
   VTABLE,
-  SETTING, VTABLE_BIGDATA, VTABLE_DRAGDROP
+  SETTING, VTABLE_BIGDATA, VTABLE_DRAGDROP, VTABLE_EDITABLE, VTABLE_SELF
 } from './';
 import { IMenu } from '@types';
 
@@ -70,6 +70,18 @@ export const menus: Array<IMenu> = [
         name: '拖拽表格',
         en_name: 'Drag & Drop',
         path: VTABLE_DRAGDROP,
+        permKey: true
+      },
+      {
+        name: '可编辑表格',
+        en_name: 'Editable',
+        path: VTABLE_EDITABLE,
+        permKey: true
+      },
+      {
+        name: '自制表格',
+        en_name: 'Make By Self',
+        path: VTABLE_SELF,
         permKey: true
       }
     ]
