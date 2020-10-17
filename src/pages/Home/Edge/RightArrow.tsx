@@ -8,10 +8,10 @@ const RightArrow: FC<RightArrowProps> = ({
 }) => {
   return (
     <div className="edge-container" >
-      <Line width={containerWidth ? containerWidth - 5 : 55} />
+      <Line width={containerWidth ? containerWidth : 55} />
       <span
         className="right-arrow"
-        style={{ right: 0 }}
+        style={{ right: -5 }}
       />
     </div>
   )
