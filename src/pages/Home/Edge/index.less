@@ -1,0 +1,37 @@
+:global {
+
+  @backgroundColor: rgba(0, 0, 0, 0.85);
+
+  .edge-container {
+    width: 60px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+
+    span {
+      display: block;
+    }
+
+    .line {
+      position: absolute;
+      background-color: @backgroundColor;
+      height: 2px;
+    }
+
+    .right-arrow {
+      position: absolute;
+      border: 5px solid transparent;
+      border-left: 10px solid rgba(0, 0, 0, 0.85);
+      width: 0;
+      height: 0px;
+    }
+
+    .edge-vertical {
+      position: absolute;
+      width: 2px;
+      background-color: @backgroundColor;
+    }
+  }
+}
