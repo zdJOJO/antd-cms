@@ -168,7 +168,7 @@ module.exports = {
           chunks: 'all',
           priority: 9 // 需要级别高点
         },
-        vendors: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
           // name: 'vendors',
           // chunks: 'all',
