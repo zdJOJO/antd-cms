@@ -8,7 +8,11 @@ const Line: FC<LineProps> = ({
   style,
   ...restProps
 }) => {
+  console.log(11111111111);
+  console.log(width);
   const newWidth = width || 60;
+  console.log(22222222222);
+  console.log(newWidth);
   const newClassName = className ? `${className} line` : 'line';
   return (
     <span
