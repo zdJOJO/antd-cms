@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import './index.less'
-import { EdgeProps } from './index.d';
+import { EdgeProps } from '../flowChart';
 
 import RightArrow from './RightArrow';
 import Diverge from './Diverge';
@@ -9,14 +9,14 @@ import Merge from './Merge';
 const Edge: FC<EdgeProps> = ({
   type,
   width,
-  heigth
+  height
 }) => {
   if (type === 'default') {
-    return <RightArrow containerWidth={width} containerHeigth={heigth} />
+    return <RightArrow containerWidth={width} containerheight={height} />
   } else if (type === 'diverge') {
-    return <Diverge containerWidth={width} containerHeigth={heigth} />
+    return <Diverge containerWidth={width} containerheight={height} />
   } else if (type === 'merge') {
-    return <Merge containerWidth={width} containerHeigth={heigth} />
+    return <Merge containerWidth={width} containerheight={height} />
   } else {
     return null
   }

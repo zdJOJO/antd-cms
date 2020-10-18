@@ -1,0 +1,31 @@
+:global {
+
+  .flow-chart-list-container {
+    overflow: auto;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+
+    .flow-chart-list {
+
+      display: flex;
+
+      .col-flex {
+        display: flex;
+        align-items: center;
+      }
+
+      .node-input-container {
+        width: 80px;
+        position: relative;
+
+        .addBtn {
+          position: absolute;
+          left: 0;
+          top: 100%;
+        }
+      }
+    }
+  }
+}

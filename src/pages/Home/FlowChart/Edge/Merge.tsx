@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import Line from './Line';
 import './index.less'
-import { RightArrowProps } from './index.d';
+import { RightArrowProps } from '../flowChart';
 
 const Merge: FC<RightArrowProps> = ({
   containerWidth,
-  containerHeigth
+  containerheight
 }) => {
   const halfWidth = containerWidth ? (containerWidth - 2 - 10) / 2 : 26;
   return (
@@ -13,27 +13,27 @@ const Merge: FC<RightArrowProps> = ({
       className="edge-container"
       style={{
         width: containerWidth || 60,
-        height: containerHeigth || 100
+        height: containerheight || 100
       }}
     >
       <Line
         width={halfWidth}
         style={{
           left: 0,
-          top: containerHeigth ? containerHeigth * 0.25 : 22
+          top: containerheight ? containerheight * 0.25 : 22
         }}
       />
       <Line
         width={halfWidth}
         style={{
           left: 0,
-          top: containerHeigth ? containerHeigth * 0.75 - 2 : 69
+          top: containerheight ? containerheight * 0.75 - 2 : 69
         }}
       />
       <span
         className="edge-vertical"
         style={{
-          height: containerHeigth ? containerHeigth * 0.5 : 50,
+          height: containerheight ? containerheight * 0.5 : 50,
           left: halfWidth
         }}
       />

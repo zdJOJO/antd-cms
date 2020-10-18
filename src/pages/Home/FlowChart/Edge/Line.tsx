@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import './index.less'
-import { LineProps } from './index.d';
+import { LineProps } from '../flowChart';
 
 const Line: FC<LineProps> = ({
   width,
@@ -8,11 +8,7 @@ const Line: FC<LineProps> = ({
   style,
   ...restProps
 }) => {
-  console.log(11111111111);
-  console.log(width);
   const newWidth = width || 60;
-  console.log(22222222222);
-  console.log(newWidth);
   const newClassName = className ? `${className} line` : 'line';
   return (
     <span

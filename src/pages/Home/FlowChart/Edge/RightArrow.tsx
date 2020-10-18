@@ -1,16 +1,16 @@
 import React, { FC } from 'react'
 import Line from './Line';
 import './index.less'
-import { RightArrowProps } from './index.d';
+import { RightArrowProps } from '../flowChart';
 
 const RightArrow: FC<RightArrowProps> = ({
-  containerHeigth,
+  containerheight,
   containerWidth
 }) => {
   return (
     <div
       className="edge-container"
-      style={{ height: containerHeigth || 50 }}
+      style={{ height: containerheight || 50 }}
     >
       <Line width={containerWidth || 55} />
       <span
