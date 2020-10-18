@@ -7,13 +7,13 @@ const Diverge: FC<RightArrowProps> = ({
   containerWidth,
   containerheight
 }) => {
-  const halfWidth = containerWidth ? (containerWidth - 2 - 10) / 2 : 26;
+  const halfWidth = containerWidth ? (containerWidth - 2) / 2 : 26;
   return (
     <div
       className="edge-container"
       style={{
-        width: containerWidth || 60,
-        height: containerheight || 100
+        width: containerWidth + 10,
+        height: containerheight
       }}
     >
       <Line width={halfWidth} />

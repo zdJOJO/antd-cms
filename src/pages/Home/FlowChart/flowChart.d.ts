@@ -3,10 +3,9 @@
  * @Autor: zdJOJO
  * @Date: 2020-10-17 19:47:54
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-18 14:36:11
+ * @LastEditTime: 2020-10-18 15:25:52
  * @FilePath: \antd-cms\src\pages\Home\FlowChart\flowChart.d.ts
  */
-import { type } from 'os';
 import * as React from 'react';
 
 type EdgeType = 'default' | 'diverge' | 'merge';
@@ -23,8 +22,8 @@ export interface LineProps extends BaseProps {
 }
 
 export interface RightArrowProps extends BaseProps {
-  containerWidth?: number
-  containerheight?: number
+  containerWidth: number
+  containerheight: number
 }
 
 export interface EdgeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,7 +37,7 @@ export interface FlowChartItemProps extends BaseProps {
   nodeType?: NodeType
 }
 
-export interface FlowChartListProps {
+export interface FlowChartListProps extends BaseProps {
   nodes: any[]
 }
 

@@ -16,7 +16,7 @@ const FlowChartItem: FC<FlowChartItemProps> = ({
 
   // nodeType === 'common'
   let child: ReactElement = (
-    <Row>
+    <div className="col-flex">
       <Col className="col-flex">
         <Edge type="default" width={newWidth} height={newHeight} />
       </Col>
@@ -26,7 +26,7 @@ const FlowChartItem: FC<FlowChartItemProps> = ({
           <Button className="addBtn" size="small" type="link" >增加班次</Button>
         </div>
       </Col>
-    </Row>
+    </div>
   )
   if (nodeType === 'root') {
     child = (
@@ -76,7 +76,7 @@ const FlowChartItem: FC<FlowChartItemProps> = ({
           node.children && node.children.map(childNode => (
             <div key={childNode.id} style={{ display: 'flex' }}>
               <Col className="col-flex">
-                <Edge type="default" width={50} height={50} />
+                <Edge type="default" width={newWidth} height={newHeight / 2} />
               </Col>
               <Col className="col-flex">
                 <div className="node-input-container">

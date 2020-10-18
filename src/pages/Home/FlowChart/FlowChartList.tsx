@@ -3,15 +3,18 @@ import { FlowChartItem } from '.';
 import { FlowChartListProps, IFlowChartNode } from './flowChart';
 import './index.less';
 
-const defaultLayout = {
-  width: 60,
-  height: 100
-}
 const FlowChartList: FC<FlowChartListProps> = ({
-  nodes
+  nodes,
+  width,
+  height
 }) => {
-  const newWidth = 80 + (nodes.length - 1) * 150 + 20;
-
+  const inputWidth = 80;
+  const defaultLayout = {
+    width: width || 60,
+    height: height || 80
+  }
+  const listPadding = 20;
+  const listWidth = inputWidth + (nodes.length - 1) * (inputWidth + defaultLayout.width + 20) + listPadding;
   const renderNode = (node: IFlowChartNode, index: number) => (
     <FlowChartItem
       {...defaultLayout}
@@ -24,7 +27,7 @@ const FlowChartList: FC<FlowChartListProps> = ({
     <div className="flow-chart-list-container">
       <div
         className="flow-chart-list"
-        style={{ width: newWidth }}
+        style={{ width: listWidth }}
       >
         {
           nodes.map((node: IFlowChartNode, index: number) => renderNode(node, index))
