@@ -5,7 +5,8 @@ import { hot } from 'react-hot-loader/root';
 import { LOGIN, ROOT } from '@route';
 import { PageLoading } from '@components';
 
-// import './index.less';
+// only needs to be imported once
+import 'react-virtualized/styles.css';
 
 const IndexPage = lazy(() => import(/* webpackChunkName: 'app' */ '../pages/app'));
 const Login = lazy(() => import(/* webpackChunkName: 'login' */ '../pages/Login'));

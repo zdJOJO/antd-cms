@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-09-26 17:37:46
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-07 19:45:51
+ * @LastEditTime: 2020-10-21 21:46:23
  * @FilePath: \antd-cms\src\components\index.ts
  */
 import {
@@ -17,9 +17,10 @@ import {
   JapanIcon,
   EnglandIcon
 } from './LocalIcons';
-import VirtualTable from './VirtualTable';
+import VirtualTable from './VirtualTableWithAntd';
 import PageLoading from './PageLoading';
 import CustomTable from './CustomTable';
+import CustomVTable from './CustomVTable';
 
 export {
   Header,
@@ -31,5 +32,6 @@ export {
   EnglandIcon,
   VirtualTable,
   PageLoading,
-  CustomTable
+  CustomTable,
+  CustomVTable
 }
