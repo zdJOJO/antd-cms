@@ -23,7 +23,7 @@
     "lint": "eslint --fix --ext .js --ext .jsx --ext .ts --ext .tsx src/ ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -b master"
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
