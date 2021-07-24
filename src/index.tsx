@@ -3,7 +3,7 @@
  * @Autor: zdJOJO
  * @Date: 2020-08-30 16:32:06
  * @LastEditors: zdJOJO
- * @LastEditTime: 2020-10-03 19:55:15
+ * @LastEditTime: 2021-07-24 21:29:41
  * @FilePath: \antd-cms\src\index.tsx
  */
 
@@ -15,7 +15,7 @@ import {
 } from 'react-router-dom';
 
 import { ConfigProvider } from 'antd';
-import en_US from 'antd/lib/locale-provider/en_US';
+// import en_US from 'antd/lib/locale-provider/en_US';
 import zh_CN from 'antd/lib/locale-provider/zh_CN';
 
 import App from './App';
@@ -26,7 +26,7 @@ const getUserConfirmation = (message: string, callback: any) => {
 }
 
 // 用来判断本地浏览器是否支持刷新
-const supportsHistory = 'pushState' in window.history;
+// const supportsHistory = 'pushState' in window.history;
 
 
 ReactDOM.render(

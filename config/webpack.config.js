@@ -45,11 +45,12 @@ const {
 
 module.exports = {
   // 入口
-  entry: mode === 'development'
+  entry: isPro
     ?
-    { main: path.resolve(__dirname, '../src/index.tsx') }
-    :
-    [
+    {
+      main: path.resolve(__dirname, '../src/index.tsx')
+    }
+    : [
       `webpack-dev-server/client?http://localhost:${port}`,
       'webpack/hot/only-dev-server',
       'react-hot-loader/patch',
