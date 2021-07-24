@@ -1,3 +1,11 @@
+/*
+ * @Description: file content
+ * @Autor: zdJOJO
+ * @Date: 2021-07-24 13:18:16
+ * @LastEditors: zdJOJO
+ * @LastEditTime: 2021-07-24 17:22:37
+ * @FilePath: \antd-cms\src\pages\app\index.tsx
+ */
 import React, { lazy, useState, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
@@ -12,8 +20,8 @@ import { ROOT, VTABLE, SETTING } from '@route';
 import { menus } from '@route/menus';
 
 const Home = lazy(() => import(/* webpackChunkName: 'home' */'../Home'))
-const Setting = lazy(() => import(/* webpackChunkName: 'setting' */'../Setting'))
-const VTable = lazy(() => import(/* webpackChunkName: 'vatable' */'../VirtualTable'))
+// const Setting = lazy(() => import(/* webpackChunkName: 'setting' */'../Setting'))
+// const VTable = lazy(() => import(/* webpackChunkName: 'vatable' */'../VirtualTable'))
 import Resource from '../Resource';
 
 import classes from './index.less';
@@ -49,8 +57,8 @@ const IndexPage = (): any => {
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
                 <Route exact path={ROOT} component={Home} />
-                <Route exact path={VTABLE} component={VTable} />
-                <Route exact path={SETTING} component={Setting} />
+                {/* <Route exact path={VTABLE} component={VTable} />
+                <Route exact path={SETTING} component={Setting} /> */}
                 <Resource />
               </Switch>
             </Suspense>

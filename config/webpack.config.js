@@ -114,7 +114,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../template/index.html'),  // 入口文件,
       inject: true,
-      title: 'The Nebula',
+      title: '退单拆分系统',
       minify: {
         removeComments: true,                   // 移除注释
         collapseWhitespace: true               // 移除空格

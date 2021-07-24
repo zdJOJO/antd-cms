@@ -80,7 +80,7 @@ const Sider: React.FC<ISider> = ({
     >
       <div className={classes.logo}>
         <img src={logo} />
-        <span className={collapsed ? classes.hide : ''}>Solar System</span>
+        <span className={collapsed ? classes.hide : ''}>Order Split</span>
       </div>
       <Menu
         theme="dark"

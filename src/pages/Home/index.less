@@ -1,4 +1,31 @@
-.welcome {
-  color: red;
-  font-size: 20px;
+.dragCell {
+  font-size: 16px;
+  cursor: grab;
+
+  &.active {
+    color: #096dd9;
+    background: #e6f7ff;
+    border: 1px dashed #91d5ff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.dropCell {
+  display: flex;
+  min-height: 40px;
+  align-items: center;
+
+  &.active {
+    height: 40px;
+    background: #fff2e8;
+  }
+}
+
+
+.dragTag {
+  cursor: grab;
+  margin: 2px;
 }
