@@ -128,13 +128,13 @@ module.exports = {
     // new FriendlyErrorsPlugin(),
     mode === 'development' ? new Webpack.HotModuleReplacementPlugin() : null,
     mode === 'development' ? new HardSourceWebpackPlugin() : null,
+    mode === 'development' ? new BundleAnalyzerPlugin() : null,
     mode === 'production' ? new CleanWebpackPlugin() : null,
     mode === 'production' ? new TerserPlugin({
       cache: true,
       parallel: true,
       sourceMap: true
-    }) : null,
-    mode === 'production' ? new BundleAnalyzerPlugin() : null
+    }) : null
   ].filter(Boolean),
 
   // 关闭文件过大检查
