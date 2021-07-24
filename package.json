@@ -22,7 +22,7 @@
     "build": "webpack --progress --config config/webpack.config.js --mode production",
     "lint": "eslint --fix --ext .js --ext .jsx --ext .ts --ext .tsx src/ ",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "predeploy": "yarn run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build -b master"
   },
   "devDependencies": {
