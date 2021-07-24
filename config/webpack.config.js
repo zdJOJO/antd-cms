@@ -43,8 +43,6 @@ const {
   fileLoader
 } = require('./utils');
 
-const rootPath = isPro ? 'antd-cms/' : '/';
-
 module.exports = {
   // 入口
   entry: isPro
@@ -64,8 +62,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist/'),
     // publicPath: '/',  // 配和 BrowserRouter
-    filename: `${rootPath}js/[name].[hash:8].bundle.js`,
-    chunkFilename: `${rootPath}js/[name].[chunkhash:8].chunk.js`
+    filename: 'js/[name].[hash:8].bundle.js',
+    chunkFilename: 'js/[name].[chunkhash:8].chunk.js'
   },
 
   // 生产模式下关闭map文件
@@ -110,8 +108,8 @@ module.exports = {
   plugins: [
 
     new MiniCssExtractPlugin({
-      filename: `${rootPath}css/[name][contenthash:8].css`,
-      chunkFilename: `${rootPath}css/[id][contenthash:8].css`
+      filename: 'css/[name][contenthash:8].css',
+      chunkFilename: 'css/[id][contenthash:8].css'
     }),
 
     new HtmlWebpackPlugin({
