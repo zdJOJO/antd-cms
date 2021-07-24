@@ -1,4 +1,5 @@
 {
+  "homepage": "https://zdJOJO.github.io/antd-cms",
   "name": "antd-cms",
   "version": "1.1.0",
   "description": "antd后台管理系统脚手架",
@@ -20,7 +21,9 @@
     "start": "webpack-dev-server --progress --inline --config config/webpack.config.js --mode development",
     "build": "webpack --progress --config config/webpack.config.js --mode production",
     "lint": "eslint --fix --ext .js --ext .jsx --ext .ts --ext .tsx src/ ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build -b master"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -58,6 +61,7 @@
     "eslint-plugin-react-hooks": "^4.1.0",
     "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^6.1.0",
+    "gh-pages": "^3.2.3",
     "hard-source-webpack-plugin": "^0.13.1",
     "html-webpack-plugin": "^4.5.0",
     "html-webpack-template": "^6.2.0",
